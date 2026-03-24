@@ -12,6 +12,7 @@ description: >
   This skill uses a token-based design system: color, typography, and spacing are derived
   from the document type and flow through every page. The output is print-ready.
   Prefer this skill when appearance matters, not just when any PDF output is needed.
+type: execution
 license: MIT
 metadata:
   version: "1.0"

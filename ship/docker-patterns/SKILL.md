@@ -1,5 +1,6 @@
 ---
 name: docker-patterns
+type: reference
 description: Docker and Docker Compose patterns for local development, container security, networking, volume strategies, and multi-service orchestration.
 category: ship
 source: everything-claude-code

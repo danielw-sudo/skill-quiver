@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf gsap-react gsap-scrolltrigger gsap-timeline gsap-plugins gsap-performance gsap-frameworks gsap-utils)",
+      "Bash(mv gsap-core:*)",
+      "Bash(mv design/harden code/harden)",
+      "Bash(mv design/optimize code/optimize)",
+      "Bash(mv design/extract code/extract)",
+      "Bash(mv frontend-design:*)",
+      "Bash(mv teach-impeccable:*)",
+      "Bash(mv gsap:*)",
+      "Bash(mv adapt:*)",
+      "Bash(mv animate:*)",
+      "Bash(mkdir -p patterns tools)",
+      "Bash(mv backend-patterns:*)",
+      "Bash(mv frontend-patterns:*)",
+      "Bash(mv django-patterns:*)",
+      "Bash(mv python-patterns:*)",
+      "Bash(find D:/cc/skill-quiver -path '*/_sources' -prune -o -name 'SKILL.md' -print -exec wc -l {})",
+      "Read(//d/Users/wangd/.claude/**)",
+      "Read(//c/Users/wangd/.claude/skills/**)"
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 ---
 name: search-first
+type: execution
 category: plan
 source: everything-claude-code
 model: any

@@ -1,5 +1,6 @@
 ---
 name: deployment-patterns
+type: reference
 description: Deployment workflows, CI/CD pipeline patterns, Docker containerization, health checks, rollback strategies, and production readiness checklists for web applications.
 category: ship
 source: everything-claude-code

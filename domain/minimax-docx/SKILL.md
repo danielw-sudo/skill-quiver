@@ -19,6 +19,7 @@ description: >
   "fill in this form", "reformat to match this template", or any task whose final output
   is a .docx file. Even if the user doesn't mention "docx" explicitly, if the task
   implies a printable/formal document, use this skill.
+type: execution
 triggers:
   - Word
   - docx

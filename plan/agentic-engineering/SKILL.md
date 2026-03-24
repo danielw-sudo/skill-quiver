@@ -1,5 +1,6 @@
 ---
 name: agentic-engineering
+type: reference
 category: plan
 source: everything-claude-code
 model: any
@@ -20,10 +21,12 @@ Use this skill for engineering workflows where AI agents perform most implementa
 
 ## Eval-First Loop
 
-1. Define capability eval and regression eval.
-2. Run baseline and capture failure signatures.
-3. Execute implementation.
-4. Re-run evals and compare deltas.
+Follow this sequence for every implementation unit:
+
+1. **Define evals** — capability eval (does it do the new thing?) and regression eval (does it still do the old things?)
+2. **Run baseline** — capture current failure signatures before changing anything
+3. **Execute implementation** — make the change
+4. **Re-run evals** — compare deltas. If capability improved and regression held, ship. If not, iterate.
 
 ## Task Decomposition
 

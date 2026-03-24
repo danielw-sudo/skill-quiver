@@ -1,5 +1,6 @@
 ---
 name: verification-loop
+type: execution
 description: "A comprehensive verification system for Claude Code sessions."
 category: test
 source: everything-claude-code

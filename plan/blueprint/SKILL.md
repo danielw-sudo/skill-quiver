@@ -1,5 +1,6 @@
 ---
 name: blueprint
+type: execution
 category: plan
 source: everything-claude-code
 model: any

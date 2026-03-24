@@ -1,6 +1,6 @@
 # skill-quiver
 
-A curated collection of 77 production-grade skills for AI-assisted development.
+A curated collection of 70 production-grade skills for AI-assisted development.
 
 Claude Code primary. Model-agnostic where possible.
 
@@ -8,24 +8,40 @@ Claude Code primary. Model-agnostic where possible.
 
 ```bash
 # Copy a skill into your project
-cp skill-quiver/code/api-design/SKILL.md .claude/skills/api-design/SKILL.md
+cp skill-quiver/code/patterns/api-design/SKILL.md .claude/skills/api-design/SKILL.md
 ```
 
 Or install the [`/quiver` loader](#quiver-loader) for interactive search and install.
+
+## Skill Types
+
+Every skill has a `type` field in its frontmatter:
+
+| Type | Meaning | What it does when loaded |
+|------|---------|------------------------|
+| `execution` | Autonomous procedure | Drives work immediately — Claude follows steps |
+| `reference` | Knowledge base | Provides context during work, not direction |
+| `persona` | Role identity | Shapes approach and communication style |
+| `setup` | One-time config | Run once, output persists across sessions |
+
+See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with types and weights.
 
 ## Categories
 
 | Folder | Count | Purpose |
 |---|---|---|
-| [`plan/`](#plan) | 6 | Architecture, blueprints, agentic engineering, autonomous loops |
-| [`code/`](#code) | 11 | Language patterns, frameworks, API design, standards |
-| [`test/`](#test) | 7 | TDD, verification loops, regression, e2e, accessibility |
+| [`plan/`](#plan) | 7 | Strategy, architecture, blueprints, product analysis |
+| [`code/patterns/`](#codepatterns) | 7 | Language and framework patterns (reference) |
+| [`code/tools/`](#codetools) | 7 | Frontend dev, migrations, optimization (execution) |
+| [`test/`](#test) | 7 | TDD, verification, regression, e2e, accessibility |
 | [`ship/`](#ship) | 3 | Deployment, Docker, DevOps automation |
-| [`design/`](#design) | 29 | Impeccable design system, GSAP animation, frontend polish |
+| [`design/core/`](#designcore) | 3 | Design principles, GSAP reference, context setup |
+| [`design/verbs/`](#designverbs) | 8 | Design actions — animate, clarify, colorize, etc. |
+| [`design/quality/`](#designquality) | 8 | Design review — audit, critique, polish, etc. |
 | [`prompt/`](#prompt) | 4 | Content creation, research, prompt optimization |
-| [`ops/`](#ops) | 3 | Cost-aware pipelines, context management, operations |
-| [`review/`](#review) | 4 | Code review, security review, security scan |
-| [`meta/`](#meta) | 5 | Continuous learning, ADRs, onboarding, skill management |
+| [`ops/`](#ops) | 3 | Cost-aware pipelines, context management |
+| [`review/`](#review) | 4 | Code review, security review |
+| [`meta/`](#meta) | 5 | Learning, ADRs, onboarding, skill management |
 | [`domain/`](#domain) | 5 | Document generation (DOCX/PDF/XLSX/PPTX), shaders |
 
 ---
@@ -34,139 +50,139 @@ Or install the [`/quiver` loader](#quiver-loader) for interactive search and ins
 
 ### Plan
 
-| Skill | Description |
-|---|---|
-| [agentic-engineering](plan/agentic-engineering/SKILL.md) | Eval-first execution, task decomposition, cost-aware model routing for agentic workflows |
-| [autonomous-loops](plan/autonomous-loops/SKILL.md) | Patterns for autonomous agent loops — from sequential pipelines to RFC-driven multi-agent DAGs |
-| [blueprint](plan/blueprint/SKILL.md) | Turn a one-line objective into a multi-session construction plan with cold-start execution and adversarial review |
-| [product-manager](plan/product-manager/SKILL.md) | Full product lifecycle ownership — discovery, strategy, roadmap, stakeholder alignment, go-to-market |
-| [search-first](plan/search-first/SKILL.md) | Research-before-coding workflow — search for existing tools, libraries, and patterns before writing custom code |
-| [software-architect](plan/software-architect/SKILL.md) | System design, domain-driven design, architectural patterns, and trade-off analysis for scalable systems |
+| Skill | Type | Description |
+|---|---|---|
+| [strategize](plan/strategize/SKILL.md) | execution | Deep autonomous strategic analysis — researches, evaluates trade-offs, produces decision document |
+| [blueprint](plan/blueprint/SKILL.md) | execution | Multi-session construction plan with cold-start execution and adversarial review |
+| [search-first](plan/search-first/SKILL.md) | execution | Research-before-coding — search for existing solutions before writing custom code |
+| [software-architect](plan/software-architect/SKILL.md) | execution | Autonomous architecture analysis — reads codebase, produces ADR with trade-offs |
+| [product-manager](plan/product-manager/SKILL.md) | execution | Autonomous product analysis — prioritization, recommendations. Templates in reference/ |
+| [agentic-engineering](plan/agentic-engineering/SKILL.md) | reference | Eval-first execution, decomposition, cost-aware model routing |
+| [autonomous-loops](plan/autonomous-loops/SKILL.md) | reference | Patterns for autonomous agent loops — sequential to RFC-driven DAG |
 
-### Code
+### Code/Patterns
 
-| Skill | Description |
-|---|---|
-| [api-design](code/api-design/SKILL.md) | REST API patterns — resource naming, status codes, pagination, filtering, versioning, rate limiting |
-| [backend-patterns](code/backend-patterns/SKILL.md) | Backend architecture for Node.js/Express/Next.js — repository, service, middleware, caching, error handling |
-| [coding-standards](code/coding-standards/SKILL.md) | Universal coding standards for TypeScript, JavaScript, React, and Node.js |
-| [database-migrations](code/database-migrations/SKILL.md) | Safe migration patterns for PostgreSQL, MySQL, and ORMs — zero-downtime, rollback, data migrations |
-| [django-patterns](code/django-patterns/SKILL.md) | Django architecture — DRF APIs, ORM best practices, caching, signals, middleware |
-| [frontend-dev](code/frontend-dev/SKILL.md) | Premium frontend development — design, animations, AI-generated assets, copywriting, generative art |
-| [frontend-patterns](code/frontend-patterns/SKILL.md) | React/Next.js patterns — composition, hooks, state management, performance, accessibility |
-| [fullstack-dev](code/fullstack-dev/SKILL.md) | Full-stack architecture and frontend-backend integration guide |
-| [mcp-server-patterns](code/mcp-server-patterns/SKILL.md) | Build MCP servers — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP |
-| [postgres-patterns](code/postgres-patterns/SKILL.md) | PostgreSQL patterns — query optimization, schema design, indexing, Row Level Security |
-| [python-patterns](code/python-patterns/SKILL.md) | Pythonic idioms, PEP 8 standards, type hints, and best practices for maintainable Python |
+| Skill | Type | Description |
+|---|---|---|
+| [api-design](code/patterns/api-design/SKILL.md) | reference | REST API patterns — resource naming, status codes, pagination, versioning |
+| [backend-patterns](code/patterns/backend-patterns/SKILL.md) | reference | Backend architecture for Node.js, Express, Next.js API routes |
+| [coding-standards](code/patterns/coding-standards/SKILL.md) | reference | Universal coding standards for TypeScript, JavaScript, React, Node.js |
+| [django-patterns](code/patterns/django-patterns/SKILL.md) | reference | Django architecture — DRF, ORM best practices, caching, signals |
+| [frontend-patterns](code/patterns/frontend-patterns/SKILL.md) | reference | React/Next.js patterns — hooks, state management, performance |
+| [postgres-patterns](code/patterns/postgres-patterns/SKILL.md) | reference | PostgreSQL — query optimization, schema design, indexing, RLS |
+| [python-patterns](code/patterns/python-patterns/SKILL.md) | reference | Pythonic idioms, PEP 8, type hints, robust Python applications |
+
+### Code/Tools
+
+| Skill | Type | Description |
+|---|---|---|
+| [frontend-dev](code/tools/frontend-dev/SKILL.md) | execution | Build production-grade frontend interfaces |
+| [fullstack-dev](code/tools/fullstack-dev/SKILL.md) | execution | Full-stack architecture and frontend-backend integration |
+| [mcp-server-patterns](code/tools/mcp-server-patterns/SKILL.md) | reference | Build MCP servers — tools, resources, validation, stdio vs HTTP |
+| [database-migrations](code/tools/database-migrations/SKILL.md) | reference | Migration patterns — zero-downtime, rollback, data migrations |
+| [harden](code/tools/harden/SKILL.md) | execution | Error handling, i18n, text overflow, edge case management |
+| [optimize](code/tools/optimize/SKILL.md) | execution | Performance — loading, rendering, animations, bundle size |
+| [extract](code/tools/extract/SKILL.md) | execution | Extract reusable components and design tokens |
 
 ### Test
 
-| Skill | Description |
-|---|---|
-| [accessibility-auditor](test/accessibility-auditor/SKILL.md) | WCAG 2.2 auditing with assistive technology testing — catches what automation misses |
-| [ai-regression-testing](test/ai-regression-testing/SKILL.md) | Regression patterns for AI-assisted dev — sandbox testing, AI blind-spot detection, bug-check workflows |
-| [api-tester](test/api-tester/SKILL.md) | Comprehensive API validation — functional, performance, security, contract testing |
-| [e2e-testing](test/e2e-testing/SKILL.md) | Playwright E2E patterns — Page Object Model, CI/CD integration, flaky test strategies |
-| [python-testing](test/python-testing/SKILL.md) | pytest patterns — TDD methodology, fixtures, mocking, parametrization, coverage |
-| [tdd-workflow](test/tdd-workflow/SKILL.md) | Test-driven development with 80%+ coverage — unit, integration, and E2E test phases |
-| [verification-loop](test/verification-loop/SKILL.md) | Comprehensive verification — build, type check, lint, test, security scan, diff review |
+| Skill | Type | Description |
+|---|---|---|
+| [tdd-workflow](test/tdd-workflow/SKILL.md) | execution | TDD with 80%+ coverage — unit, integration, E2E |
+| [verification-loop](test/verification-loop/SKILL.md) | execution | Build, type check, lint, test, security scan, diff review |
+| [e2e-testing](test/e2e-testing/SKILL.md) | execution | Playwright E2E — Page Object Model, CI/CD, flaky tests |
+| [python-testing](test/python-testing/SKILL.md) | reference | pytest — TDD, fixtures, mocking, parametrization, coverage |
+| [ai-regression-testing](test/ai-regression-testing/SKILL.md) | reference | Regression testing for AI-assisted development |
+| [accessibility-auditor](test/accessibility-auditor/SKILL.md) | persona | WCAG auditing with assistive technology testing |
+| [api-tester](test/api-tester/SKILL.md) | persona | API validation, performance testing, quality assurance |
 
 ### Ship
 
-| Skill | Description |
-|---|---|
-| [deployment-patterns](ship/deployment-patterns/SKILL.md) | CI/CD pipelines, Docker containerization, health checks, rollback strategies, production readiness |
-| [devops-automator](ship/devops-automator/SKILL.md) | Infrastructure automation — IaC, CI/CD pipelines, container orchestration, zero-downtime deploys |
-| [docker-patterns](ship/docker-patterns/SKILL.md) | Docker/Compose patterns — local dev, container security, networking, volume strategies |
+| Skill | Type | Description |
+|---|---|---|
+| [deployment-patterns](ship/deployment-patterns/SKILL.md) | reference | CI/CD, Docker, health checks, rollback strategies |
+| [docker-patterns](ship/docker-patterns/SKILL.md) | reference | Docker/Compose — local dev, security, networking, volumes |
+| [devops-automator](ship/devops-automator/SKILL.md) | persona | Infrastructure automation, CI/CD pipelines, cloud ops |
 
-### Design
+### Design/Core
 
-#### Impeccable Design System
+| Skill | Type | Description |
+|---|---|---|
+| [frontend-design](design/core/frontend-design/SKILL.md) | reference | Design principles, anti-slop guidelines, aesthetic direction. Reference docs in reference/ |
+| [teach-impeccable](design/core/teach-impeccable/SKILL.md) | setup | One-time design context gathering — recommended before design work |
+| [gsap](design/core/gsap/SKILL.md) | reference | Consolidated GSAP — core, timelines, ScrollTrigger, React/Vue/Svelte, plugins |
 
-Run [`teach-impeccable`](design/teach-impeccable/SKILL.md) first to gather project design context.
+### Design/Verbs
 
-| Skill | Description |
-|---|---|
-| [frontend-design](design/frontend-design/SKILL.md) | Master design skill — context gathering, aesthetics, typography, color, layout, motion, anti-slop checks |
-| [teach-impeccable](design/teach-impeccable/SKILL.md) | One-time setup — gathers design context for your project and persists it to config |
-| [adapt](design/adapt/SKILL.md) | Adapt designs across screen sizes, devices, and platforms |
-| [animate](design/animate/SKILL.md) | Add purposeful animations and micro-interactions that improve usability |
-| [arrange](design/arrange/SKILL.md) | Fix layout, spacing, and visual rhythm — create intentional compositions |
-| [audit](design/audit/SKILL.md) | Comprehensive quality audit — accessibility, performance, theming, responsive |
-| [bolder](design/bolder/SKILL.md) | Amplify safe designs — increase visual impact while maintaining usability |
-| [clarify](design/clarify/SKILL.md) | Improve UX copy, error messages, microcopy, labels, and instructions |
-| [colorize](design/colorize/SKILL.md) | Add strategic color to monochromatic designs |
-| [critique](design/critique/SKILL.md) | UX design critique — hierarchy, IA, emotional resonance, AI-slop detection |
-| [delight](design/delight/SKILL.md) | Add personality, joy, and unexpected touches that make interfaces memorable |
-| [distill](design/distill/SKILL.md) | Strip designs to essence — remove unnecessary complexity |
-| [extract](design/extract/SKILL.md) | Extract reusable components, design tokens, and patterns into a design system |
-| [harden](design/harden/SKILL.md) | Improve resilience — error handling, i18n, text overflow, edge cases |
-| [normalize](design/normalize/SKILL.md) | Align design to your design system — fix inconsistent tokens and styles |
-| [onboard](design/onboard/SKILL.md) | Design first-time user experience, empty states, guided tours |
-| [optimize](design/optimize/SKILL.md) | Performance optimization — loading speed, rendering, animations, bundle size |
-| [overdrive](design/overdrive/SKILL.md) | Push interfaces to technical limits — shaders, spring physics, scroll-driven reveals |
-| [polish](design/polish/SKILL.md) | Final quality pass — alignment, spacing, states, transitions, edge cases |
-| [quieter](design/quieter/SKILL.md) | Tone down visually aggressive designs while maintaining character |
-| [typeset](design/typeset/SKILL.md) | Improve typography — font choices, hierarchy, sizing, readability |
+| Skill | Type | Description |
+|---|---|---|
+| [adapt](design/verbs/adapt/SKILL.md) | execution | Adapt designs across screen sizes, devices, platforms |
+| [animate](design/verbs/animate/SKILL.md) | execution | Purposeful animations and micro-interactions |
+| [arrange](design/verbs/arrange/SKILL.md) | execution | Fix layout, spacing, visual rhythm |
+| [bolder](design/verbs/bolder/SKILL.md) | execution | Amplify safe designs — increase visual impact |
+| [clarify](design/verbs/clarify/SKILL.md) | execution | Improve UX copy, error messages, labels |
+| [colorize](design/verbs/colorize/SKILL.md) | execution | Add strategic color to monochromatic interfaces |
+| [delight](design/verbs/delight/SKILL.md) | execution | Joy, personality, and unexpected touches |
+| [distill](design/verbs/distill/SKILL.md) | execution | Strip designs to their essence |
 
-#### GSAP Animation
+### Design/Quality
 
-| Skill | Description |
-|---|---|
-| [gsap-core](design/gsap-core/SKILL.md) | Core GSAP API — tweens, easing, stagger, defaults, responsive animation |
-| [gsap-react](design/gsap-react/SKILL.md) | React-specific GSAP — useGSAP hook, refs, cleanup, SSR |
-| [gsap-scrolltrigger](design/gsap-scrolltrigger/SKILL.md) | Scroll-driven animations — pinning, scrubbing, batching |
-| [gsap-timeline](design/gsap-timeline/SKILL.md) | Timeline sequencing — position parameter, nesting, playback control |
-| [gsap-plugins](design/gsap-plugins/SKILL.md) | GSAP plugins — Flip, Draggable, SplitText, SVG, physics |
-| [gsap-performance](design/gsap-performance/SKILL.md) | Animation performance — GPU properties, will-change, batching |
-| [gsap-frameworks](design/gsap-frameworks/SKILL.md) | GSAP with Vue, Svelte, and other frameworks |
-| [gsap-utils](design/gsap-utils/SKILL.md) | Utility functions — clamp, mapRange, snap, toArray, wrap, pipe |
+| Skill | Type | Description |
+|---|---|---|
+| [audit](design/quality/audit/SKILL.md) | execution | Interface quality audit — accessibility, performance, theming |
+| [critique](design/quality/critique/SKILL.md) | execution | UX design critique — hierarchy, IA, emotional resonance |
+| [normalize](design/quality/normalize/SKILL.md) | execution | Align design to design system |
+| [onboard](design/quality/onboard/SKILL.md) | execution | First-time user experience, empty states, guided tours |
+| [overdrive](design/quality/overdrive/SKILL.md) | execution | Push interfaces past conventional limits |
+| [polish](design/quality/polish/SKILL.md) | execution | Final quality pass — alignment, spacing, consistency |
+| [quieter](design/quality/quieter/SKILL.md) | execution | Tone down visually aggressive designs |
+| [typeset](design/quality/typeset/SKILL.md) | execution | Typography — font choices, hierarchy, readability |
 
 ### Prompt
 
-| Skill | Description |
-|---|---|
-| [article-writing](prompt/article-writing/SKILL.md) | Long-form content — articles, guides, blog posts, tutorials in a distinctive voice |
-| [content-engine](prompt/content-engine/SKILL.md) | Platform-native content for X, LinkedIn, TikTok, YouTube, newsletters |
-| [deep-research](prompt/deep-research/SKILL.md) | Multi-source deep research with web search, synthesis, and cited reports |
-| [prompt-optimizer](prompt/prompt-optimizer/SKILL.md) | Analyze and optimize prompts — identify intent, gaps, and output ready-to-paste improvements |
+| Skill | Type | Description |
+|---|---|---|
+| [deep-research](prompt/deep-research/SKILL.md) | execution | Multi-source research with citations via firecrawl/exa MCPs |
+| [prompt-optimizer](prompt/prompt-optimizer/SKILL.md) | execution | Analyze and optimize prompts for better AI output |
+| [article-writing](prompt/article-writing/SKILL.md) | reference | Long-form content in distinctive voice |
+| [content-engine](prompt/content-engine/SKILL.md) | reference | Platform-native content for social and newsletters |
 
 ### Ops
 
-| Skill | Description |
-|---|---|
-| [cost-aware-llm-pipeline](ops/cost-aware-llm-pipeline/SKILL.md) | Cost optimization for LLM APIs — model routing, budget tracking, retry logic, prompt caching |
-| [enterprise-agent-ops](ops/enterprise-agent-ops/SKILL.md) | Long-lived agent workloads with observability, security boundaries, and lifecycle management |
-| [strategic-compact](ops/strategic-compact/SKILL.md) | Manual context compaction at logical intervals to preserve context through task phases |
+| Skill | Type | Description |
+|---|---|---|
+| [cost-aware-llm-pipeline](ops/cost-aware-llm-pipeline/SKILL.md) | reference | LLM API cost optimization — model routing, budgets, caching |
+| [enterprise-agent-ops](ops/enterprise-agent-ops/SKILL.md) | reference | Long-lived agent workloads with observability and security |
+| [strategic-compact](ops/strategic-compact/SKILL.md) | reference | Manual context compaction at logical intervals |
 
 ### Review
 
-| Skill | Description |
-|---|---|
-| [code-reviewer](review/code-reviewer/SKILL.md) | Constructive code review — correctness, security, maintainability, performance. Teaches, not gatekeeps |
-| [security-engineer](review/security-engineer/SKILL.md) | Threat modeling, vulnerability assessment, secure code review, OWASP compliance |
-| [security-review](review/security-review/SKILL.md) | Security checklist for auth, user input, secrets, API endpoints, payment flows |
-| [security-scan](review/security-scan/SKILL.md) | Scan Claude Code config for vulnerabilities, misconfigurations, and injection risks |
+| Skill | Type | Description |
+|---|---|---|
+| [security-review](review/security-review/SKILL.md) | execution | Security checklist for auth, input, secrets, APIs |
+| [security-scan](review/security-scan/SKILL.md) | execution | Scan Claude Code config for vulnerabilities |
+| [code-reviewer](review/code-reviewer/SKILL.md) | persona | Constructive code review — correctness, security, maintainability |
+| [security-engineer](review/security-engineer/SKILL.md) | persona | Threat modeling, vulnerability assessment, secure architecture |
 
 ### Meta
 
-| Skill | Description |
-|---|---|
-| [architecture-decision-records](meta/architecture-decision-records/SKILL.md) | Capture architectural decisions as structured ADRs with context, alternatives, and rationale |
-| [codebase-onboarding](meta/codebase-onboarding/SKILL.md) | Analyze unfamiliar codebases and generate structured onboarding guides with architecture maps |
-| [context-budget](meta/context-budget/SKILL.md) | Audit context window consumption — identify bloat and produce token-savings recommendations |
-| [continuous-learning-v2](meta/continuous-learning-v2/SKILL.md) | Instinct-based learning system — observes sessions, creates atomic learnings, evolves into skills |
-| [skill-stocktake](meta/skill-stocktake/SKILL.md) | Audit skills and commands for quality — Quick Scan or Full Stocktake modes |
+| Skill | Type | Description |
+|---|---|---|
+| [context-budget](meta/context-budget/SKILL.md) | execution | Audit context window consumption and identify bloat |
+| [skill-stocktake](meta/skill-stocktake/SKILL.md) | execution | Audit skills for quality — quick scan or full stocktake |
+| [architecture-decision-records](meta/architecture-decision-records/SKILL.md) | reference | Capture decisions as structured ADRs |
+| [codebase-onboarding](meta/codebase-onboarding/SKILL.md) | setup | Analyze unfamiliar codebase, generate onboarding guide |
+| [continuous-learning-v2](meta/continuous-learning-v2/SKILL.md) | reference | Instinct-based learning with confidence scoring |
 
 ### Domain
 
-| Skill | Description |
-|---|---|
-| [minimax-docx](domain/minimax-docx/SKILL.md) | Professional DOCX creation/editing — OpenXML SDK, CJK typography, multi-section layouts |
-| [minimax-pdf](domain/minimax-pdf/SKILL.md) | Beautiful PDF generation — token-based design system, 15 document type templates |
-| [minimax-xlsx](domain/minimax-xlsx/SKILL.md) | Excel/spreadsheet creation — formula-first approach, financial formatting, validation |
-| [pptx-generator](domain/pptx-generator/SKILL.md) | PowerPoint generation/editing — PptxGenJS, 5 slide types, theme system |
-| [shader-dev](domain/shader-dev/SKILL.md) | GLSL shaders — ray marching, SDF, fluid simulation, procedural generation, 36 techniques |
+| Skill | Type | Description |
+|---|---|---|
+| [minimax-docx](domain/minimax-docx/SKILL.md) | execution | Professional DOCX creation/editing |
+| [minimax-pdf](domain/minimax-pdf/SKILL.md) | execution | Beautiful PDF generation |
+| [minimax-xlsx](domain/minimax-xlsx/SKILL.md) | execution | Excel/spreadsheet creation and editing |
+| [pptx-generator](domain/pptx-generator/SKILL.md) | execution | PowerPoint generation/editing |
+| [shader-dev](domain/shader-dev/SKILL.md) | execution | GLSL shaders — ray marching, SDF, fluid, particles |
 
 ---
 
@@ -185,7 +201,7 @@ Then use `/quiver search`, `/quiver list`, `/quiver preview`, or `/quiver instal
 Curated from:
 - **everything-claude-code** — engineering, testing, agentic patterns
 - **impeccable** — frontend design system with anti-AI-slop checks
-- **gsap-skills** — GSAP animation library patterns
+- **gsap-skills** — GSAP animation library patterns (consolidated into single reference)
 - **agency-agents** — role-based engineering personas (cherry-picked)
 - **mini-max-skills** — document generation, native dev, shaders
 
