@@ -10,13 +10,8 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
-| strategize | execution | standard | plan/strategize/ | Deep autonomous strategic analysis — researches, evaluates trade-offs, produces decision document |
 | blueprint | execution | light | plan/blueprint/ | Multi-session construction plan generator with adversarial review |
 | search-first | execution | light | plan/search-first/ | Research-before-coding workflow — find existing solutions first |
-| software-architect | execution | standard | plan/software-architect/ | Autonomous architecture analysis — produces ADRs with trade-offs |
-| product-manager | execution | standard | plan/product-manager/ | Autonomous product analysis — prioritization, recommendations. Templates in reference/ |
-| agentic-engineering | reference | light | plan/agentic-engineering/ | Eval-first execution, decomposition, cost-aware model routing |
-| autonomous-loops | reference | light | plan/autonomous-loops/ | Patterns for autonomous agent loops — sequential to RFC-driven DAG |
 
 ## code/patterns/
 
@@ -25,17 +20,14 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | api-design | reference | heavy | code/patterns/api-design/ | REST API design — resource naming, status codes, pagination, versioning |
 | backend-patterns | reference | heavy | code/patterns/backend-patterns/ | Backend architecture for Node.js, Express, Next.js API routes |
 | coding-standards | reference | heavy | code/patterns/coding-standards/ | Universal coding standards for TypeScript, JavaScript, React, Node.js |
-| django-patterns | reference | heavy | code/patterns/django-patterns/ | Django architecture, DRF, ORM best practices, caching, signals |
 | frontend-patterns | reference | heavy | code/patterns/frontend-patterns/ | Frontend patterns for React, Next.js, state management, performance |
 | postgres-patterns | reference | standard | code/patterns/postgres-patterns/ | PostgreSQL query optimization, schema design, indexing, security |
-| python-patterns | reference | heavy | code/patterns/python-patterns/ | Pythonic idioms, PEP 8, type hints, robust Python applications |
 
 ## code/tools/
 
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
 | frontend-dev | execution | heavy | code/tools/frontend-dev/ | Build production-grade frontend interfaces |
-| fullstack-dev | execution | standard | code/tools/fullstack-dev/ | Full-stack development patterns |
 | mcp-server-patterns | reference | light | code/tools/mcp-server-patterns/ | Build MCP servers — tools, resources, validation, stdio vs HTTP |
 | database-migrations | reference | heavy | code/tools/database-migrations/ | Migration best practices — schema changes, rollbacks, zero-downtime |
 | harden | execution | heavy | code/tools/harden/ | Error handling, i18n, text overflow, edge case management |
@@ -48,7 +40,6 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 |------|------|--------|------|-------------|
 | frontend-design | reference | standard | design/core/frontend-design/ | Design principles, anti-slop guidelines, aesthetic direction. Reference docs in reference/ |
 | teach-impeccable | setup | light | design/core/teach-impeccable/ | One-time design context gathering — saves to .impeccable.md |
-| gsap | reference | heavy | design/core/gsap/ | Consolidated GSAP reference — core, timelines, ScrollTrigger, React/Vue/Svelte, plugins |
 
 ## design/verbs/
 
@@ -83,7 +74,6 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | tdd-workflow | execution | heavy | test/tdd-workflow/ | Test-driven development with 80%+ coverage |
 | verification-loop | execution | standard | test/verification-loop/ | Comprehensive verification system — build, lint, type check, test |
 | e2e-testing | execution | heavy | test/e2e-testing/ | Playwright E2E patterns, Page Object Model, CI/CD |
-| python-testing | reference | heavy | test/python-testing/ | Python testing with pytest — TDD, fixtures, mocking, coverage |
 | ai-regression-testing | reference | heavy | test/ai-regression-testing/ | Regression testing for AI-assisted development |
 | accessibility-auditor | persona | heavy | test/accessibility-auditor/ | WCAG audit specialist — assistive tech testing |
 | api-tester | persona | heavy | test/api-tester/ | API validation, performance testing, quality assurance |

@@ -1,6 +1,6 @@
 # skill-quiver
 
-A curated collection of 70 production-grade skills for AI-assisted development.
+A curated collection of 61 production-grade skills for AI-assisted development.
 
 Claude Code primary. Model-agnostic where possible.
 
@@ -30,12 +30,12 @@ See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with ty
 
 | Folder | Count | Purpose |
 |---|---|---|
-| [`plan/`](#plan) | 7 | Strategy, architecture, blueprints, product analysis |
-| [`code/patterns/`](#codepatterns) | 7 | Language and framework patterns (reference) |
-| [`code/tools/`](#codetools) | 7 | Frontend dev, migrations, optimization (execution) |
-| [`test/`](#test) | 7 | TDD, verification, regression, e2e, accessibility |
+| [`plan/`](#plan) | 2 | Strategy, architecture, blueprints |
+| [`code/patterns/`](#codepatterns) | 5 | Language and framework patterns (reference) |
+| [`code/tools/`](#codetools) | 6 | Frontend dev, migrations, optimization (execution) |
+| [`test/`](#test) | 6 | TDD, verification, regression, e2e, accessibility |
 | [`ship/`](#ship) | 3 | Deployment, Docker, DevOps automation |
-| [`design/core/`](#designcore) | 3 | Design principles, GSAP reference, context setup |
+| [`design/core/`](#designcore) | 2 | Design principles, context setup |
 | [`design/verbs/`](#designverbs) | 8 | Design actions — animate, clarify, colorize, etc. |
 | [`design/quality/`](#designquality) | 8 | Design review — audit, critique, polish, etc. |
 | [`prompt/`](#prompt) | 4 | Content creation, research, prompt optimization |
@@ -52,13 +52,8 @@ See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with ty
 
 | Skill | Type | Description |
 |---|---|---|
-| [strategize](plan/strategize/SKILL.md) | execution | Deep autonomous strategic analysis — researches, evaluates trade-offs, produces decision document |
 | [blueprint](plan/blueprint/SKILL.md) | execution | Multi-session construction plan with cold-start execution and adversarial review |
 | [search-first](plan/search-first/SKILL.md) | execution | Research-before-coding — search for existing solutions before writing custom code |
-| [software-architect](plan/software-architect/SKILL.md) | execution | Autonomous architecture analysis — reads codebase, produces ADR with trade-offs |
-| [product-manager](plan/product-manager/SKILL.md) | execution | Autonomous product analysis — prioritization, recommendations. Templates in reference/ |
-| [agentic-engineering](plan/agentic-engineering/SKILL.md) | reference | Eval-first execution, decomposition, cost-aware model routing |
-| [autonomous-loops](plan/autonomous-loops/SKILL.md) | reference | Patterns for autonomous agent loops — sequential to RFC-driven DAG |
 
 ### Code/Patterns
 
@@ -67,17 +62,14 @@ See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with ty
 | [api-design](code/patterns/api-design/SKILL.md) | reference | REST API patterns — resource naming, status codes, pagination, versioning |
 | [backend-patterns](code/patterns/backend-patterns/SKILL.md) | reference | Backend architecture for Node.js, Express, Next.js API routes |
 | [coding-standards](code/patterns/coding-standards/SKILL.md) | reference | Universal coding standards for TypeScript, JavaScript, React, Node.js |
-| [django-patterns](code/patterns/django-patterns/SKILL.md) | reference | Django architecture — DRF, ORM best practices, caching, signals |
 | [frontend-patterns](code/patterns/frontend-patterns/SKILL.md) | reference | React/Next.js patterns — hooks, state management, performance |
 | [postgres-patterns](code/patterns/postgres-patterns/SKILL.md) | reference | PostgreSQL — query optimization, schema design, indexing, RLS |
-| [python-patterns](code/patterns/python-patterns/SKILL.md) | reference | Pythonic idioms, PEP 8, type hints, robust Python applications |
 
 ### Code/Tools
 
 | Skill | Type | Description |
 |---|---|---|
 | [frontend-dev](code/tools/frontend-dev/SKILL.md) | execution | Build production-grade frontend interfaces |
-| [fullstack-dev](code/tools/fullstack-dev/SKILL.md) | execution | Full-stack architecture and frontend-backend integration |
 | [mcp-server-patterns](code/tools/mcp-server-patterns/SKILL.md) | reference | Build MCP servers — tools, resources, validation, stdio vs HTTP |
 | [database-migrations](code/tools/database-migrations/SKILL.md) | reference | Migration patterns — zero-downtime, rollback, data migrations |
 | [harden](code/tools/harden/SKILL.md) | execution | Error handling, i18n, text overflow, edge case management |
@@ -91,7 +83,6 @@ See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with ty
 | [tdd-workflow](test/tdd-workflow/SKILL.md) | execution | TDD with 80%+ coverage — unit, integration, E2E |
 | [verification-loop](test/verification-loop/SKILL.md) | execution | Build, type check, lint, test, security scan, diff review |
 | [e2e-testing](test/e2e-testing/SKILL.md) | execution | Playwright E2E — Page Object Model, CI/CD, flaky tests |
-| [python-testing](test/python-testing/SKILL.md) | reference | pytest — TDD, fixtures, mocking, parametrization, coverage |
 | [ai-regression-testing](test/ai-regression-testing/SKILL.md) | reference | Regression testing for AI-assisted development |
 | [accessibility-auditor](test/accessibility-auditor/SKILL.md) | persona | WCAG auditing with assistive technology testing |
 | [api-tester](test/api-tester/SKILL.md) | persona | API validation, performance testing, quality assurance |
@@ -110,7 +101,6 @@ See [MANIFEST.md](MANIFEST.md) for the full machine-readable skill index with ty
 |---|---|---|
 | [frontend-design](design/core/frontend-design/SKILL.md) | reference | Design principles, anti-slop guidelines, aesthetic direction. Reference docs in reference/ |
 | [teach-impeccable](design/core/teach-impeccable/SKILL.md) | setup | One-time design context gathering — recommended before design work |
-| [gsap](design/core/gsap/SKILL.md) | reference | Consolidated GSAP — core, timelines, ScrollTrigger, React/Vue/Svelte, plugins |
 
 ### Design/Verbs
 
