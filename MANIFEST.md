@@ -116,7 +116,9 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
+| context-audit | execution | standard | meta/context-audit/ | Audit persistent context files for staleness, duplication, and bloat |
 | context-budget | execution | standard | meta/context-budget/ | Audit context window consumption and identify bloat |
+| quiver-draw | execution | standard | meta/quiver-draw/ | Hot-load skills from quiver into global ~/.claude/skills/ |
 | skill-stocktake | execution | standard | meta/skill-stocktake/ | Audit skills for quality — quick scan or full stocktake |
 | architecture-decision-records | reference | standard | meta/architecture-decision-records/ | Capture architectural decisions as structured ADRs |
 | codebase-onboarding | setup | standard | meta/codebase-onboarding/ | Analyze unfamiliar codebase and generate onboarding guide |
