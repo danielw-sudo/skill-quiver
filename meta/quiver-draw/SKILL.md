@@ -1,113 +1,97 @@
 ---
 name: quiver-draw
 description: >-
-  Hot-load skills from skill-quiver into global ~/.claude/skills/ for immediate
-  use. List available skills, draw (load), sheathe (unload), and show current
-  loadout. TRIGGER when: user wants to equip a skill, says "/quiver-draw",
-  "load skill", "I need the X skill", or "unload skill".
+  Draw a skill from skill-quiver for immediate use in this session.
+  Shows numbered list, user picks, skill is read into context.
+  TRIGGER when: user says "/quiver-draw", "draw a skill", "I need a skill",
+  "load skill from quiver".
 type: execution
 category: meta
 source: original
 model: any
 ---
 
-# /quiver-draw — Skill Loader
+# /quiver-draw — Draw a Skill
 
-Hot-load skills from the quiver into your global skills for immediate use.
+Pick a skill from the quiver. It gets read into context and is ready to use immediately. No installation, no restart.
 
-## Paths
-
-```
-Quiver:  D:\cc\skill-quiver
-Global:  C:\Users\wangd\.claude\skills
-```
-
-## Commands
-
-### List available skills
-```
-/quiver-draw list [category]
-```
-Read `D:\cc\skill-quiver\MANIFEST.md`. Show name, type, weight, and whether already loaded (compare against global skills directory). If category given, filter.
-
-### Draw (load) a skill
-```
-/quiver-draw [skill-name]
-/quiver-draw draw [skill-name]
-```
-1. Find skill in MANIFEST.md by name (fuzzy match OK — `context` matches `context-audit`)
-2. If multiple matches, show them and ask
-3. Source: `D:\cc\skill-quiver\{path}/SKILL.md`
-4. Target: `C:\Users\wangd\.claude\skills\{skill-name}\SKILL.md`
-5. If skill has a `reference/` directory, copy that too
-6. If already loaded: report "already drawn" and skip
-7. If `heavy` weight: warn about token cost before copying
-8. Confirm: `Drawn: {skill-name} ({type}, {weight})`
-
-### Sheathe (unload) a skill
-```
-/quiver-draw sheathe [skill-name]
-```
-1. Check if skill exists in global skills
-2. **Safety check**: only remove skills that exist in the quiver — never remove skills that don't have a quiver source (those are hand-crafted globals like wrap, kael, etc.)
-3. Delete `C:\Users\wangd\.claude\skills\{skill-name}\`
-4. Confirm: `Sheathed: {skill-name}`
-
-### Show current loadout
-```
-/quiver-draw inventory
-```
-Compare global skills against MANIFEST.md:
+## Quiver Location
 
 ```
-Currently Drawn (from quiver):
-  context-audit    meta     standard
-  tdd-workflow     test     heavy
-
-Permanent (no quiver source):
-  wrap, kael, learner, elevate, brainstorm, ...
-
-Available in Quiver: 54 skills across 12 categories
+D:\cc\skill-quiver
 ```
 
-## No-Argument Behavior
+## How It Works
 
-If run with no arguments, show the inventory (current loadout).
+### Step 1: List
+
+Read `D:\cc\skill-quiver\MANIFEST.md`. Present a numbered menu:
+
+```
+Quiver — pick your arrow:
+
+ #  Name                    Category        Weight    Description
+ 1  blueprint               plan            light     Multi-session construction plan generator
+ 2  search-first            plan            light     Research-before-coding workflow
+ 3  api-design              code/patterns   heavy     REST API design patterns
+ 4  backend-patterns        code/patterns   heavy     Backend architecture for Node/Express
+ ...
+54  context-audit           meta            standard  Audit persistent context files
+
+Type a number to draw:
+```
+
+**Exclude** `_sources/` directory — those are raw imports, not curated skills.
+
+If the user passed a name or keyword with the command (e.g. `/quiver-draw tdd`), skip the menu — fuzzy match against MANIFEST.md and go straight to Step 2. If multiple matches, show only those as a numbered list.
+
+### Step 2: Draw
+
+Once the user picks a number (or a name was matched):
+
+1. Look up the skill's path in MANIFEST.md
+2. Read `D:\cc\skill-quiver\{path}/SKILL.md`
+3. If the skill has a `reference/` directory, read those files too
+4. Present: `Drawn: {name} ({weight}). Ready to use.`
+5. If `heavy` weight: note `⚠ Heavy — this will use significant context`
+
+The skill is now in context. The user can invoke it naturally — "use it to..." or by its trigger phrases.
+
+### Step 3: Use
+
+Follow the drawn skill's instructions as if it were an installed skill. The skill content is in your context — execute it.
 
 ## Rules
 
-- **Never modify the quiver** — read-only source
-- **Never sheathe permanent skills** — only skills that have a matching quiver source can be sheathed
-- **Always read MANIFEST.md first** — don't scan directories
-- **Copy, don't symlink** — symlinks on Windows are unreliable without admin
-- **Show weight on draw** — user should know the token cost
+- **Read-only** — never modify files in skill-quiver
+- **No file copying** — skills are read into context, not installed to disk
+- **MANIFEST.md first** — always read the manifest for lookup, don't scan directories
+- **One at a time** — drawing a second skill is fine, but warn if context is getting heavy (2+ heavy skills)
+- **Exclude `_sources/`** — not curated, not in manifest
 
 ## Examples
 
-**Quick draw**
-```
-User: /quiver-draw tdd
-Skill: Found tdd-workflow (test/tdd-workflow, execution, heavy)
-       ⚠ Heavy skill — adds ~3K tokens to context
-       Drawn: tdd-workflow
-```
-
-**Browse then draw**
-```
-User: /quiver-draw list design
-Skill: Shows 16 design skills with loaded/available status
-User: draw animate
-Skill: Drawn: animate (design/verbs/animate, execution, standard)
-```
-
-**Clean up after session**
-```
-User: /quiver-draw sheathe tdd-workflow
-Skill: Sheathed: tdd-workflow
-```
-
-**Check what's loaded**
+**Interactive pick**
 ```
 User: /quiver-draw
-Skill: Shows inventory — 3 drawn from quiver, 8 permanent, 54 available
+Skill: Shows numbered list of 54 skills
+User: 12
+Skill: Reads frontend-dev SKILL.md → "Drawn: frontend-dev (heavy). Ready to use."
+```
+
+**Direct draw by name**
+```
+User: /quiver-draw tdd
+Skill: Matches tdd-workflow → reads it → "Drawn: tdd-workflow (heavy). Ready to use."
+```
+
+**Keyword search**
+```
+User: /quiver-draw security
+Skill: Shows 4 matches:
+        1  security-review    review   heavy
+        2  security-scan      review   standard
+        3  security-engineer  review   heavy
+        4  harden             code     heavy
+       Type a number to draw:
 ```
