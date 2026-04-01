@@ -1,5 +1,5 @@
 ---
-name: shader-dev
+name: shader
 description: Comprehensive GLSL shader techniques for creating stunning visual effects — ray marching, SDF modeling, fluid simulation, particle systems, procedural generation, lighting, post-processing, and more.
 type: execution
 license: MIT

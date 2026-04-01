@@ -1,8 +1,8 @@
 ---
-name: context-audit
+name: ctx-audit
 description: Audits persistent context files (CLAUDE.md, SESSION_CONTEXT, handoffs, memory) for staleness, duplication, hot/cold mismatch, orphan references, and bloat. Produces a prioritized action list. User confirms before any changes.
 type: execution
-category: meta
+category: system
 source: original
 model: any
 ---

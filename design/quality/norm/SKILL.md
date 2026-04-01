@@ -1,5 +1,5 @@
 ---
-name: normalize
+name: norm
 description: Normalize design to match your design system and ensure consistency
 type: execution
 user-invocable: true

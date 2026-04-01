@@ -1,5 +1,5 @@
 ---
-name: deployment-patterns
+name: deploy
 type: reference
 description: Deployment workflows, CI/CD pipeline patterns, Docker containerization, health checks, rollback strategies, and production readiness checklists for web applications.
 category: ship

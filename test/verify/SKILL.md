@@ -1,5 +1,5 @@
 ---
-name: verification-loop
+name: verify
 type: execution
 description: "A comprehensive verification system for Claude Code sessions."
 category: test

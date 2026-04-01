@@ -1,0 +1,29 @@
+{
+  "webhook_url": null,
+  "thresholds": [
+    {
+      "metric": "api_spend_daily_usd",
+      "threshold": 50.00,
+      "direction": "above",
+      "severity": "warning"
+    },
+    {
+      "metric": "api_spend_daily_usd",
+      "threshold": 100.00,
+      "direction": "above",
+      "severity": "critical"
+    },
+    {
+      "metric": "portfolio_value_change_pct",
+      "threshold": -5.0,
+      "direction": "below",
+      "severity": "critical"
+    },
+    {
+      "metric": "content_pipeline_success_rate",
+      "threshold": 0.80,
+      "direction": "below",
+      "severity": "warning"
+    }
+  ]
+}

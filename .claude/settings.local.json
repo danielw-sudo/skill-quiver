@@ -18,7 +18,20 @@
       "Bash(mv python-patterns:*)",
       "Bash(find D:/cc/skill-quiver -path '*/_sources' -prune -o -name 'SKILL.md' -print -exec wc -l {})",
       "Read(//d/Users/wangd/.claude/**)",
-      "Read(//c/Users/wangd/.claude/skills/**)"
+      "Read(//c/Users/wangd/.claude/skills/**)",
+      "Bash(git fetch:*)",
+      "Bash(find D:/cc/skill-quiver -maxdepth 3 -name SKILL.md -exec dirname {})",
+      "Bash(sed -i 's/^name: architecture-decision-records/name: adr/' system/adr/SKILL.md)",
+      "Bash(sed -i 's/^name: context-audit/name: ctx-audit/' system/ctx-audit/SKILL.md)",
+      "Bash(sed -i 's/^name: context-budget/name: ctx-budget/' system/ctx-budget/SKILL.md)",
+      "Bash(sed -i 's/^name: continuous-learning-v2/name: instinct/' system/instinct/SKILL.md)",
+      "Bash(sed -i 's/^name: codebase-onboarding/name: onboard-repo/' system/onboard-repo/SKILL.md)",
+      "Bash(sed -i 's/^name: security-review/name: sec-review/' review/sec-review/SKILL.md)",
+      "Bash(sed -i 's/^name: security-scan/name: sec-scan/' review/sec-scan/SKILL.md)",
+      "Bash(sed -i '2 s/^name: deployment-patterns/name: deploy/' ship/deploy/SKILL.md)",
+      "Bash(sed -i '2 s/^name: docker-patterns/name: docker/' ship/docker/SKILL.md)",
+      "Bash(sed -i 's/^name: ai-regression-testing/name: ai-regression/' test/ai-regression/SKILL.md)",
+      "Bash(find . -maxdepth 3 -name SKILL.md -exec dirname {})"
     ]
   }
 }

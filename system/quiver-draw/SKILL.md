@@ -6,7 +6,7 @@ description: >-
   TRIGGER when: user says "/quiver-draw", "draw a skill", "I need a skill",
   "load skill from quiver".
 type: execution
-category: meta
+category: system
 source: original
 model: any
 ---
@@ -17,15 +17,20 @@ Pick a skill from the quiver. It gets read into context and is ready to use imme
 
 ## Quiver Location
 
+The quiver root is resolved in this order:
+1. `$QUIVER_PATH` environment variable (if set)
+2. The repo root of this skill file (if running from within skill-quiver)
+3. Fallback: prompt the user for the path
+
 ```
-D:\cc\skill-quiver
+$QUIVER_PATH
 ```
 
 ## How It Works
 
 ### Step 1: List
 
-Read `D:\cc\skill-quiver\MANIFEST.md`. Present a numbered menu:
+Read `$QUIVER_PATH/MANIFEST.md`. Present a numbered menu:
 
 ```
 Quiver — pick your arrow:
@@ -50,7 +55,7 @@ If the user passed a name or keyword with the command (e.g. `/quiver-draw tdd`),
 Once the user picks a number (or a name was matched):
 
 1. Look up the skill's path in MANIFEST.md
-2. Read `D:\cc\skill-quiver\{path}/SKILL.md`
+2. Read `$QUIVER_PATH/{path}/SKILL.md`
 3. If the skill has a `reference/` directory, read those files too
 4. Present: `Drawn: {name} ({weight}). Ready to use.`
 5. If `heavy` weight: note `⚠ Heavy — this will use significant context`

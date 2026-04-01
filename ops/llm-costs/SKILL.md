@@ -1,5 +1,5 @@
 ---
-name: cost-aware-llm-pipeline
+name: llm-costs
 description: Cost optimization patterns for LLM API usage — model routing by task complexity, budget tracking, retry logic, and prompt caching.
 type: reference
 category: ops
@@ -178,9 +178,32 @@ def process(text: str, config: Config, tracker: CostTracker) -> tuple[Result, Co
 - Hardcoding model names throughout the codebase (use constants or config)
 - Ignoring prompt caching for repetitive system prompts
 
+## Production Operations
+
+For long-lived or continuously running agent workloads, add these operational controls.
+
+**Operational domains:** runtime lifecycle (start/pause/stop/restart), observability (logs/metrics/traces), safety controls (scopes/permissions/kill switches), change management (rollout/rollback/audit).
+
+**Baseline controls:**
+- Immutable deployment artifacts
+- Least-privilege credentials, environment-level secret injection
+- Hard timeout and retry budgets (complement the retry logic above)
+- Audit log for high-risk actions
+
+**Metrics to track:** success rate, mean retries per task, time to recovery, cost per successful task, failure class distribution.
+
+**Incident pattern** — when failure spikes:
+1. Freeze new rollout
+2. Capture representative traces
+3. Isolate failing route
+4. Patch with smallest safe change
+5. Run regression + security checks
+6. Resume gradually
+
 ## When to Use
 
 - Any application calling Claude, OpenAI, or similar LLM APIs
 - Batch processing pipelines where cost adds up quickly
 - Multi-model architectures that need intelligent routing
 - Production systems that need budget guardrails
+- Long-lived agent workloads needing operational controls
