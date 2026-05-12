@@ -39,6 +39,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
 | fe-design | reference | standard | design/core/fe-design/ | Design principles, anti-slop guidelines, aesthetic direction |
+| fireworks-tech-graph | execution | heavy | design/core/fireworks-tech-graph/ | Natural language → SVG/PNG technical diagrams. 7 styles, 14+ diagram types, 40+ product icons |
 | impeccable | setup | light | design/core/impeccable/ | One-time design context gathering — saves to .impeccable.md |
 
 ## design/verbs/
