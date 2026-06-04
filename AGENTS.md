@@ -70,6 +70,18 @@ model_tested: claude-sonnet-4-6 # optional — model used during validation
 
 ---
 
+## Source Repo Strategy: Clone → Curate → Remove
+
+When adding a skill source repo:
+1. `git clone --depth=1 <repo> resources/<name>`
+2. Process ALL skills: promote (≥7/10) or log rejection to `resources/_rejected/log.md`
+3. `rm -rf resources/<name>` after every skill is either promoted or rejected
+4. No repo lingers after full processing
+
+**Deduplication:** Skills already in quiver that appear in a source repo are marked "skip — already promoted" and counted as processed. The quiver version is canonical.
+
+**Current pause (2026-06-04):** No new repos until backlog clears (~437 candidates across active sources).
+
 ## Curation Workflow (HITL)
 
 For external candidates, go through the curation pipeline — do NOT skip:
