@@ -12,3 +12,4 @@ Thumbs.db
 DEVLOG.md
 DEVLOG_ARCHIVE.md
 resources/
+.claude/settings.local.json
