@@ -1,0 +1,16 @@
+{
+  "models": {
+    "current": "claude-sonnet-4-6",
+    "capable": ["claude-opus-4-8", "claude-sonnet-4-6", "claude-haiku-4-5"],
+    "deprecated": ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku", "claude-3-5-sonnet", "claude-3-5-haiku"]
+  },
+  "mcps": {
+    "active": ["payload-cms", "firecrawl", "exa", "gbrain", "engram", "playwright", "context7"],
+    "deprecated": []
+  },
+  "tools": {
+    "active": ["hermes", "codex", "gemini-cli", "opencode"],
+    "deprecated": []
+  },
+  "updated": "2026-06-04"
+}

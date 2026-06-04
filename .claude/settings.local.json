@@ -31,7 +31,23 @@
       "Bash(sed -i '2 s/^name: deployment-patterns/name: deploy/' ship/deploy/SKILL.md)",
       "Bash(sed -i '2 s/^name: docker-patterns/name: docker/' ship/docker/SKILL.md)",
       "Bash(sed -i 's/^name: ai-regression-testing/name: ai-regression/' test/ai-regression/SKILL.md)",
-      "Bash(find . -maxdepth 3 -name SKILL.md -exec dirname {})"
+      "Bash(find . -maxdepth 3 -name SKILL.md -exec dirname {})",
+      "mcp__plugin_engram_engram__mem_save",
+      "Read(//home/ubuntu/.hermes/**)",
+      "Read(//home/ubuntu/gemini-workspace/**)",
+      "Read(//home/ubuntu/agy-workspace/**)",
+      "Bash(python3 -c \"import yaml; print\\('yaml ok'\\)\")",
+      "WebSearch",
+      "Bash(git -C /home/ubuntu/projects/skill-quiver/_sources/fireworks-tech-graph remote get-url origin)",
+      "Bash(git clone *)",
+      "Bash(chmod +x /home/ubuntu/projects/skill-quiver/sync-manifest.sh)",
+      "Bash(bash sync-manifest.sh)",
+      "Bash(python3 *.)",
+      "Bash(python3 -c \"import json; s=json.load\\(open\\('skills.json'\\)\\); cats=sorted\\(set\\(x['category'] for x in s\\)\\); print\\(f'{len\\(s\\)} skills, {len\\(cats\\)} categories'\\); print\\('\\\\n'.join\\(cats\\)\\)\")",
+      "Bash(chmod +x /home/ubuntu/projects/skill-quiver/bin/quiver-inject)",
+      "Bash(QUIVER_PATH=/home/ubuntu/projects/skill-quiver python3 -)",
+      "Bash(python3 -c ' *)",
+      "Bash(git add *)"
     ]
   }
 }

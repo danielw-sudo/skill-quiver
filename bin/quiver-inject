@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# quiver-inject — prepend a skill's content to any CLI command
+#
+# Usage:
+#   quiver-inject <skill-name> <cli> [args...]
+#   quiver-inject tdd-workflow codex exec "write tests for auth.ts"
+#   quiver-inject api-design gemini "design a REST API for users"
+#
+# Env: QUIVER_PATH (default: ~/projects/skill-quiver)
+
+set -euo pipefail
+
+QUIVER="${QUIVER_PATH:-$HOME/projects/skill-quiver}"
+
+if [ $# -lt 2 ]; then
+  echo "Usage: quiver-inject <skill-name> <cli> [args...]" >&2
+  exit 1
+fi
+
+SKILL_NAME="$1"; shift
+
+# Resolve skill path from skills.json
+SKILL_PATH=$(python3 - "$QUIVER" "$SKILL_NAME" <<'PYEOF'
+import sys, json
+quiver, name = sys.argv[1], sys.argv[2]
+try:
+    skills = json.load(open(f"{quiver}/skills.json"))
+except FileNotFoundError:
+    print(f"ERROR: {quiver}/skills.json not found. Run sync-manifest.sh first.", file=sys.stderr)
+    sys.exit(1)
+
+matches = [s for s in skills if s['name'] == name or s['id'] == name]
+if not matches:
+    # fuzzy: substring match on name
+    matches = [s for s in skills if name in s['name'] or name in s['id']]
+if not matches:
+    print(f"ERROR: skill '{name}' not found in skills.json", file=sys.stderr)
+    sys.exit(1)
+if len(matches) > 1:
+    print(f"ERROR: ambiguous — matches: {[s['id'] for s in matches]}", file=sys.stderr)
+    sys.exit(1)
+
+print(f"{quiver}/{matches[0]['path']}SKILL.md")
+PYEOF
+)
+
+if [ ! -f "$SKILL_PATH" ]; then
+  echo "ERROR: SKILL.md not found at $SKILL_PATH" >&2
+  exit 1
+fi
+
+SKILL_CONTENT=$(cat "$SKILL_PATH")
+
+# Also read reference/ dir if it exists
+SKILL_DIR=$(dirname "$SKILL_PATH")
+if [ -d "$SKILL_DIR/reference" ]; then
+  for ref in "$SKILL_DIR/reference"/*.md; do
+    [ -f "$ref" ] || continue
+    SKILL_CONTENT="$SKILL_CONTENT
+
+---
+$(cat "$ref")"
+  done
+fi
+
+CLI_BIN="$1"; shift
+CLI_ARGS=("$@")
+
+# Detect how to inject skill content based on CLI
+case "$CLI_BIN" in
+  codex)
+    # codex exec reads from stdin or -p flag; prepend to last string arg
+    if [ ${#CLI_ARGS[@]} -gt 0 ]; then
+      LAST="${CLI_ARGS[-1]}"
+      CLI_ARGS[-1]="$SKILL_CONTENT
+
+---
+
+$LAST"
+    fi
+    exec "$CLI_BIN" "${CLI_ARGS[@]}"
+    ;;
+  gemini)
+    # gemini reads prompt as last arg
+    if [ ${#CLI_ARGS[@]} -gt 0 ]; then
+      LAST="${CLI_ARGS[-1]}"
+      CLI_ARGS[-1]="$SKILL_CONTENT
+
+---
+
+$LAST"
+    fi
+    exec "$CLI_BIN" "${CLI_ARGS[@]}"
+    ;;
+  claude)
+    # claude -p supports multi-line prompt
+    exec "$CLI_BIN" -p "$SKILL_CONTENT
+
+---
+
+${CLI_ARGS[*]}"
+    ;;
+  *)
+    # Generic: print skill then exec (for piped use)
+    echo "$SKILL_CONTENT"
+    echo "---"
+    exec "$CLI_BIN" "${CLI_ARGS[@]}"
+    ;;
+esac
