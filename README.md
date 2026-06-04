@@ -84,6 +84,28 @@ Your Tool
 
 For non-Claude tools, `bin/quiver-inject` does the same thing from the command line.
 
+### Always-loading skills (project-scoped)
+
+To make specific skills load every session in a project, add `@import` lines to the project's `CLAUDE.md`:
+
+```markdown
+@system/quiver-draw/SKILL.md
+@system/curate/SKILL.md
+```
+
+Claude Code reads `@path` in CLAUDE.md at session start and inlines the file into context — no commands needed, fires automatically.
+
+**Hook alternative** (cross-project, any tool):
+```json
+// .claude/settings.json
+{
+  "hooks": {
+    "UserPromptSubmit": [{ "command": "cat $QUIVER_PATH/system/quiver-draw/SKILL.md" }]
+  }
+}
+```
+Hook fires on every prompt — heavier, but works across all projects without touching their CLAUDE.md.
+
 ---
 
 ## Security
