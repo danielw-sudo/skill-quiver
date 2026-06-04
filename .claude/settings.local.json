@@ -51,7 +51,12 @@
       "Bash(git commit *)",
       "Bash(chmod +x /home/ubuntu/projects/skill-quiver/bin/skillspector-scan)",
       "Bash(QUIVER_PATH=/home/ubuntu/projects/skill-quiver /home/ubuntu/projects/skill-quiver/bin/skillspector-scan /home/ubuntu/projects/skill-quiver/resources/skillspector/tests/fixtures/malicious_skill/SKILL.md --no-llm)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(git -C /home/ubuntu/projects/skill-quiver add README.md)",
+      "Bash(git -C /home/ubuntu/projects/skill-quiver commit -m 'docs: add always-loading guide to README \\(@import vs hook\\) *)",
+      "Bash(git -C ~/projects/llm-wiki status --short)",
+      "Bash(git -C ~/projects/llm-wiki log --oneline -3)",
+      "Bash(git *)"
     ]
   }
 }
