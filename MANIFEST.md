@@ -12,12 +12,15 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
 | api-design | reference | heavy | code/patterns/api/ | REST API design patterns including resource naming, status codes, pagination, fi… |
+| backend-architect | persona | light | code/backend-architect/ | Senior backend architect for system design, database architecture, API developme… |
 | backend-patterns | reference | heavy | code/patterns/backend/ | Backend architecture patterns, API design, database optimization, and server-sid… |
 | coding-standards | reference | heavy | code/patterns/standards/ | Universal coding standards, best practices, and patterns for TypeScript, JavaScr… |
 | database-migrations | reference | heavy | code/tools/db-migrate/ | Database migration best practices for schema changes, data migrations, rollbacks… |
 | frontend-patterns | reference | heavy | code/patterns/frontend/ | Frontend development patterns for React, Next.js, state management, performance … |
 | mcp-server-patterns | reference | light | code/tools/mcp-server/ | Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod vali… |
 | postgres-patterns | reference | standard | code/patterns/postgres/ | PostgreSQL database patterns for query optimization, schema design, indexing, an… |
+| software-architect | persona | light | code/software-architect/ | Software architect for system design, domain-driven design, and architectural de… |
+| systematic-debugging | execution | heavy | code/systematic-debugging/ | 4-phase root cause debugging: understand bugs before fixing. Enforces the iron l… |
 
 ## code/tools/
 
@@ -26,7 +29,9 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | extract | execution | light | code/tools/extract/ | Extract and consolidate reusable components, design tokens, and patterns into yo… |
 | frontend-dev | execution | heavy | code/tools/fe-dev/ | | |
 | harden | execution | heavy | code/tools/harden/ | Improve interface resilience through better error handling, i18n support, text o… |
+| mcp-builder | persona | light | code/tools/mcp-builder/ | MCP server specialist — designs, builds, and tests MCP servers that extend AI ag… |
 | optimize | execution | heavy | code/tools/optimize/ | Improve interface performance across loading speed, rendering, animations, image… |
+| python-data-pipeline | reference | standard | code/tools/python-data-pipeline/ | Build robust multi-stage data processing pipelines using Python. Covers the Inpu… |
 
 ## design/core/
 
@@ -76,11 +81,15 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
+| agent-orchestration | execution | standard | ops/agent-orchestration/ | Orchestrate multiple AI agents on the same host. Two modes: dispatch (one-shot t… |
 | compact | reference | light | ops/compact/ | Suggests manual context compaction at logical intervals to preserve context thro… |
 | llm-costs | reference | standard | ops/llm-costs/ | Cost optimization patterns for LLM API usage — model routing by task complexity,… |
 | maintain | workflow | standard | ops/maintain/ | KB chore runner — organizes unprocessed notes, enforces structure, rotates live … |
+| opencode | reference | standard | ops/opencode/ | OpenCode CLI reference — delegate coding tasks to OpenCode as an autonomous codi… |
+| persistent-background-script | execution | standard | ops/persistent-background-script/ | Create, deploy, and manage long-running resilient background service scripts tha… |
 | retro | workflow | standard | ops/retro/ | Bidirectional retrospective — grades agent system evolution and human decision q… |
 | session-distill | workflow | light | ops/session-distill/ | Distills a Claude Code session into a structured Trilium KB note following the a… |
+| subagent-driven-development | execution | standard | ops/subagent-driven-development/ | Execute implementation plans by dispatching fresh subagents per task with two-st… |
 
 ## plan/
 
@@ -88,6 +97,9 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 |------|------|--------|------|-------------|
 | blueprint | execution | light | plan/blueprint/ | Turn a one-line objective into a step-by-step construction plan for multi-sessio… |
 | search-first | execution | light | plan/search-first/ | Research-before-coding workflow. Search for existing tools, libraries, and patte… |
+| spike | execution | standard | plan/spike/ | Throwaway experiments to validate an idea before committing to a build. Validate… |
+| workflow-architect | persona | light | plan/workflow-architect/ | Workflow design specialist. Maps complete workflow trees covering happy paths, b… |
+| writing-plans | execution | standard | plan/writing-plans/ | Write architectural and implementation plans before any code. Two modes: top-dow… |
 
 ## prompt/
 
@@ -103,6 +115,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
 | Code Reviewer | persona | light | review/reviewer/ | Expert code reviewer who provides constructive, actionable feedback focused on c… |
+| requesting-code-review | execution | standard | review/requesting-code-review/ | Pre-commit verification pipeline: security scan, baseline-aware quality gates, i… |
 | sec-review | execution | heavy | review/sec-review/ | Use this skill when adding authentication, handling user input, working with sec… |
 | sec-scan | execution | light | review/sec-scan/ | Scan your Claude Code configuration (.claude/ directory) for security vulnerabil… |
 | skill-scan | execution | light | review/skill-scan/ | Security scan a SKILL.md using NVIDIA SkillSpector before curation or promotion.… |

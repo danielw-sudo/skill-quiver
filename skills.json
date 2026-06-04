@@ -1,5 +1,23 @@
 [
   {
+    "id": "code/backend-architect",
+    "name": "backend-architect",
+    "type": "persona",
+    "category": "code",
+    "description": "Senior backend architect for system design, database architecture, API development, and cloud infrastructure. Every architectural decision states its tradeoff explicitly. TRIGGER when: user asks to design a backend, review a DB schema, structure an API, or plan for scalability.",
+    "weight": "light",
+    "pairs_with": [
+      "code/software-architect",
+      "review/security-engineer",
+      "code/tools/mcp-builder"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/backend-architect/",
+    "install": "cp $QUIVER_PATH/code/backend-architect/SKILL.md .claude/skills/backend-architect/SKILL.md"
+  },
+  {
     "id": "code/patterns/api",
     "name": "api-design",
     "type": "reference",
@@ -70,6 +88,42 @@
     "install": "cp $QUIVER_PATH/code/patterns/standards/SKILL.md .claude/skills/coding-standards/SKILL.md"
   },
   {
+    "id": "code/software-architect",
+    "name": "software-architect",
+    "type": "persona",
+    "category": "code",
+    "description": "Software architect for system design, domain-driven design, and architectural decision-making. Always presents 2+ options with explicit tradeoffs. Output in ADR format. TRIGGER when: user asks to design an architecture, choose between approaches, or review an existing architecture.",
+    "weight": "light",
+    "pairs_with": [
+      "code/backend-architect",
+      "code/tools/mcp-builder",
+      "plan/workflow-architect"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/software-architect/",
+    "install": "cp $QUIVER_PATH/code/software-architect/SKILL.md .claude/skills/software-architect/SKILL.md"
+  },
+  {
+    "id": "code/systematic-debugging",
+    "name": "systematic-debugging",
+    "type": "execution",
+    "category": "code",
+    "description": "4-phase root cause debugging: understand bugs before fixing. Enforces the iron law — no fixes without root cause investigation first. Covers test failures, production bugs, performance issues, and silent background process failures. TRIGGER when: any technical issue, test failure, unexpected behavior, or when multiple fix attempts have already failed.",
+    "weight": "heavy",
+    "pairs_with": [
+      "test/tdd-workflow",
+      "plan/writing-plans",
+      "ops/subagent-driven-development"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/systematic-debugging/",
+    "install": "cp $QUIVER_PATH/code/systematic-debugging/SKILL.md .claude/skills/systematic-debugging/SKILL.md"
+  },
+  {
     "id": "code/tools/db-migrate",
     "name": "database-migrations",
     "type": "reference",
@@ -126,6 +180,23 @@
     "install": "cp $QUIVER_PATH/code/tools/harden/SKILL.md .claude/skills/harden/SKILL.md"
   },
   {
+    "id": "code/tools/mcp-builder",
+    "name": "mcp-builder",
+    "type": "persona",
+    "category": "code/tools",
+    "description": "MCP server specialist — designs, builds, and tests MCP servers that extend AI agent capabilities. Obsessed with DX: tool names must be unambiguous, typed params required, secrets from env only. TRIGGER when: user asks to build an MCP server, add tools for an agent, or create an API integration for Claude.",
+    "weight": "light",
+    "pairs_with": [
+      "code/backend-architect",
+      "code/software-architect"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/tools/mcp-builder/",
+    "install": "cp $QUIVER_PATH/code/tools/mcp-builder/SKILL.md .claude/skills/mcp-builder/SKILL.md"
+  },
+  {
     "id": "code/tools/mcp-server",
     "name": "mcp-server-patterns",
     "type": "reference",
@@ -152,6 +223,23 @@
     "model_tested": null,
     "path": "code/tools/optimize/",
     "install": "cp $QUIVER_PATH/code/tools/optimize/SKILL.md .claude/skills/optimize/SKILL.md"
+  },
+  {
+    "id": "code/tools/python-data-pipeline",
+    "name": "python-data-pipeline",
+    "type": "reference",
+    "category": "code/tools",
+    "description": "Build robust multi-stage data processing pipelines using Python. Covers the Input-Process-Output (IPO) pattern, config-driven architecture, dependency management with venv, and common pitfalls including NumPy ABI conflicts and externally-managed-environment errors.",
+    "weight": "standard",
+    "pairs_with": [
+      "ops/persistent-background-script",
+      "code/software-architect"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/tools/python-data-pipeline/",
+    "install": "cp $QUIVER_PATH/code/tools/python-data-pipeline/SKILL.md .claude/skills/python-data-pipeline/SKILL.md"
   },
   {
     "id": "design/core/fe-design",
@@ -490,6 +578,23 @@
     "install": "cp $QUIVER_PATH/domain/xlsx/SKILL.md .claude/skills/xlsx/SKILL.md"
   },
   {
+    "id": "ops/agent-orchestration",
+    "name": "agent-orchestration",
+    "type": "execution",
+    "category": "ops",
+    "description": "Orchestrate multiple AI agents on the same host. Two modes: dispatch (one-shot tasks routed to specialist agents via CLI runners) and peer agent management (persistent processes with file-based inbox/outbox communication). Includes zombie hygiene, process monitoring, and parallel dispatch patterns. TRIGGER when: user asks to delegate to another agent, run parallel AI tasks, or manage long-running agent processes.",
+    "weight": "standard",
+    "pairs_with": [
+      "ops/subagent-driven-development",
+      "plan/workflow-architect"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "ops/agent-orchestration/",
+    "install": "cp $QUIVER_PATH/ops/agent-orchestration/SKILL.md .claude/skills/agent-orchestration/SKILL.md"
+  },
+  {
     "id": "ops/compact",
     "name": "compact",
     "type": "reference",
@@ -532,6 +637,39 @@
     "install": "cp $QUIVER_PATH/ops/maintain/SKILL.md .claude/skills/maintain/SKILL.md"
   },
   {
+    "id": "ops/opencode",
+    "name": "opencode",
+    "type": "reference",
+    "category": "ops",
+    "description": "OpenCode CLI reference — delegate coding tasks to OpenCode as an autonomous coding worker. Covers one-shot tasks, interactive background sessions, PR review, parallel work patterns, and session management. Requires OpenCode installed and auth configured.",
+    "weight": "standard",
+    "pairs_with": [
+      "ops/subagent-driven-development"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "ops/opencode/",
+    "install": "cp $QUIVER_PATH/ops/opencode/SKILL.md .claude/skills/opencode/SKILL.md"
+  },
+  {
+    "id": "ops/persistent-background-script",
+    "name": "persistent-background-script",
+    "type": "execution",
+    "category": "ops",
+    "description": "Create, deploy, and manage long-running resilient background service scripts that persist across agent and system restarts. Covers PID file management, logging, systemd deployment, and verification. TRIGGER when: user asks to \"run a script in background\", \"keep running after restart\", \"create a daemon\", \"background process\", or \"persistent service\".",
+    "weight": "standard",
+    "pairs_with": [
+      "code/tools/python-data-pipeline",
+      "ops/eco-audit"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "ops/persistent-background-script/",
+    "install": "cp $QUIVER_PATH/ops/persistent-background-script/SKILL.md .claude/skills/persistent-background-script/SKILL.md"
+  },
+  {
     "id": "ops/retro",
     "name": "retro",
     "type": "workflow",
@@ -560,6 +698,24 @@
     "install": "cp $QUIVER_PATH/ops/session-distill/SKILL.md .claude/skills/session-distill/SKILL.md"
   },
   {
+    "id": "ops/subagent-driven-development",
+    "name": "subagent-driven-development",
+    "type": "execution",
+    "category": "ops",
+    "description": "Execute implementation plans by dispatching fresh subagents per task with two-stage review (spec compliance then code quality). No agent verifies its own work. Fresh context per task prevents state pollution. TRIGGER when: you have an implementation plan ready and want to execute it task-by-task with systematic quality gates.",
+    "weight": "standard",
+    "pairs_with": [
+      "plan/writing-plans",
+      "review/requesting-code-review",
+      "test/tdd-workflow"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "ops/subagent-driven-development/",
+    "install": "cp $QUIVER_PATH/ops/subagent-driven-development/SKILL.md .claude/skills/subagent-driven-development/SKILL.md"
+  },
+  {
     "id": "plan/blueprint",
     "name": "blueprint",
     "type": "execution",
@@ -586,6 +742,59 @@
     "model_tested": null,
     "path": "plan/search-first/",
     "install": "cp $QUIVER_PATH/plan/search-first/SKILL.md .claude/skills/search-first/SKILL.md"
+  },
+  {
+    "id": "plan/spike",
+    "name": "spike",
+    "type": "execution",
+    "category": "plan",
+    "description": "Throwaway experiments to validate an idea before committing to a build. Validates feasibility, compares approaches, surfaces unknowns that research alone won't answer. Spikes are disposable by design. TRIGGER when: user says \"let me try this\", \"spike this out\", \"is this even possible?\", \"compare A vs B\", or \"before I commit to Y\".",
+    "weight": "standard",
+    "pairs_with": [
+      "plan/writing-plans",
+      "ops/subagent-driven-development"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "plan/spike/",
+    "install": "cp $QUIVER_PATH/plan/spike/SKILL.md .claude/skills/spike/SKILL.md"
+  },
+  {
+    "id": "plan/workflow-architect",
+    "name": "workflow-architect",
+    "type": "persona",
+    "category": "plan",
+    "description": "Workflow design specialist. Maps complete workflow trees covering happy paths, branch conditions, failure modes, recovery paths, and handoff contracts. TRIGGER when: user asks to \"design the workflow for X\", \"map out how Y should work\", \"spec the flow before we build it\", or \"what states can this system be in\".",
+    "weight": "light",
+    "pairs_with": [
+      "plan/writing-plans",
+      "code/software-architect",
+      "code/tools/mcp-builder"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "plan/workflow-architect/",
+    "install": "cp $QUIVER_PATH/plan/workflow-architect/SKILL.md .claude/skills/workflow-architect/SKILL.md"
+  },
+  {
+    "id": "plan/writing-plans",
+    "name": "writing-plans",
+    "type": "execution",
+    "category": "plan",
+    "description": "Write architectural and implementation plans before any code. Two modes: top-down architectural specs (components, data contracts, batched plan) and bottom-up implementation plans (bite-sized TDD tasks, exact file paths, copy-pasteable code). TRIGGER when: user asks for \"a plan\", before multi-component work, or before delegating to subagents.",
+    "weight": "standard",
+    "pairs_with": [
+      "ops/subagent-driven-development",
+      "test/tdd-workflow",
+      "review/requesting-code-review"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "plan/writing-plans/",
+    "install": "cp $QUIVER_PATH/plan/writing-plans/SKILL.md .claude/skills/writing-plans/SKILL.md"
   },
   {
     "id": "prompt/article",
@@ -642,6 +851,24 @@
     "model_tested": null,
     "path": "prompt/research/",
     "install": "cp $QUIVER_PATH/prompt/research/SKILL.md .claude/skills/research/SKILL.md"
+  },
+  {
+    "id": "review/requesting-code-review",
+    "name": "requesting-code-review",
+    "type": "execution",
+    "category": "review",
+    "description": "Pre-commit verification pipeline: security scan, baseline-aware quality gates, independent reviewer subagent, and auto-fix loop. No agent verifies its own work. TRIGGER when: user says \"commit\", \"push\", \"ship\", \"done\", \"verify\", or \"review before merge\", or after implementing a feature with 2+ file edits.",
+    "weight": "standard",
+    "pairs_with": [
+      "ops/subagent-driven-development",
+      "test/tdd-workflow",
+      "plan/writing-plans"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "review/requesting-code-review/",
+    "install": "cp $QUIVER_PATH/review/requesting-code-review/SKILL.md .claude/skills/requesting-code-review/SKILL.md"
   },
   {
     "id": "review/reviewer",
