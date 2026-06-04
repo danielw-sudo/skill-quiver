@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Always-loaded skills (this project)
+
+@system/quiver-draw/SKILL.md
+@system/curate/SKILL.md
+@system/format/SKILL.md
+@system/stocktake/SKILL.md
+
 ## What this repo is
 
 A curated collection of production-grade skills for AI-assisted development. Each skill is a `SKILL.md` file that any AI coding tool loads into context to gain a capability (execution procedure, reference knowledge, role persona, or one-time setup).

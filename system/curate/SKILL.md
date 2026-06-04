@@ -25,6 +25,22 @@ Accept any of:
 
 If multiple candidates match, show a numbered list.
 
+## Step 0: Security Scan
+
+Before any evaluation, run SkillSpector:
+
+```bash
+$QUIVER_PATH/bin/skillspector-scan <candidate-path>
+```
+
+- Score > 50 → **stop, reject immediately**, log to `resources/_rejected/log.md` with reason `SECURITY:[score]`
+- Score 26–50 → flag findings, ask user to confirm before continuing
+- Score ≤ 25 → proceed
+
+Known trusted sources (use `--no-llm` for speed, skip interactive confirmation):
+`greensock/gsap-skills`, `pbakaus/impeccable`, `affaan-m/everything-claude-code`,
+`MiniMax-AI/skills`, `NVIDIA/SkillSpector`, `JimLiu/baoyu-skills`
+
 ## Step 1: Read
 
 Read the candidate file. If it lacks `---` frontmatter, treat it as a persona/reference doc and note this.

@@ -47,7 +47,11 @@
       "Bash(chmod +x /home/ubuntu/projects/skill-quiver/bin/quiver-inject)",
       "Bash(QUIVER_PATH=/home/ubuntu/projects/skill-quiver python3 -)",
       "Bash(python3 -c ' *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(chmod +x /home/ubuntu/projects/skill-quiver/bin/skillspector-scan)",
+      "Bash(QUIVER_PATH=/home/ubuntu/projects/skill-quiver /home/ubuntu/projects/skill-quiver/bin/skillspector-scan /home/ubuntu/projects/skill-quiver/resources/skillspector/tests/fixtures/malicious_skill/SKILL.md --no-llm)",
+      "Bash(python3 *)"
     ]
   }
 }

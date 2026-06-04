@@ -686,6 +686,20 @@
     "install": "cp $QUIVER_PATH/review/sec-scan/SKILL.md .claude/skills/sec-scan/SKILL.md"
   },
   {
+    "id": "review/skill-scan",
+    "name": "skill-scan",
+    "type": "execution",
+    "category": "review",
+    "description": "Security scan a SKILL.md using NVIDIA SkillSpector before curation or promotion. Detects 64 vulnerability patterns across 16 categories including prompt injection, data exfiltration, harmful content, MCP poisoning. TRIGGER when: user says \"/skill-scan [path]\", \"scan this skill\", or \"is this skill safe\". Also called automatically by /curate as Step 0.",
+    "weight": "light",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-04",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "review/skill-scan/",
+    "install": "cp $QUIVER_PATH/review/skill-scan/SKILL.md .claude/skills/skill-scan/SKILL.md"
+  },
+  {
     "id": "ship/deploy",
     "name": "deploy",
     "type": "reference",

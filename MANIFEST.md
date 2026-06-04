@@ -105,6 +105,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Code Reviewer | persona | light | review/reviewer/ | Expert code reviewer who provides constructive, actionable feedback focused on c… |
 | sec-review | execution | heavy | review/sec-review/ | Use this skill when adding authentication, handling user input, working with sec… |
 | sec-scan | execution | light | review/sec-scan/ | Scan your Claude Code configuration (.claude/ directory) for security vulnerabil… |
+| skill-scan | execution | light | review/skill-scan/ | Security scan a SKILL.md using NVIDIA SkillSpector before curation or promotion.… |
 
 ## ship/
 
