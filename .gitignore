@@ -1,7 +1,42 @@
 # Raw source folders — not part of curated library
 _sources/
 _archived/
+
+# WIP / local-only docs
 AUDIT.md
+DEVLOG.md
+DEVLOG_ARCHIVE.md
+
+# Staging area + source pools — never commit
+resources/
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/worktrees/
+
+# Astro build output (future web/ dir)
+web/dist/
+web/node_modules/
+web/.astro/
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
 # OS
 .DS_Store
 Thumbs.db
@@ -9,7 +44,5 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
-DEVLOG.md
-DEVLOG_ARCHIVE.md
-resources/
-.claude/settings.local.json
+*.swp
+*.swo
