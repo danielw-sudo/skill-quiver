@@ -1,6 +1,8 @@
+<!-- not every arrow made it into the quiver. -->
+
 # skill-quiver
 
-Curated library of 167 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills.
+Curated library of 167 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills[.](workbench/lost-arrow/SKILL.md)
 
 **Primary target:** Claude Code. Compatible with Codex, Gemini CLI, and any tool that accepts skill injection.
 
