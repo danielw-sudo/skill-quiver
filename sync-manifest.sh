@@ -150,7 +150,7 @@ PYEOF
 # --- Optional: push to Trilium ---
 if [ -n "${TRILIUM_TOKEN:-}" ]; then
   TRILIUM_URL="${TRILIUM_URL:-http://localhost:37840}"
-  NOTE_ID="kpIA1RoIFb6V"
+  NOTE_ID="${TRILIUM_NOTE_ID:-kpIA1RoIFb6V}"
   # Build compact index from skills.json
   python3 -c "
 import json, sys
