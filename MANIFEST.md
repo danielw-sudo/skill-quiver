@@ -235,6 +235,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | onboard-repo | setup | standard | system/onboard-repo/ | Analyze an unfamiliar codebase and generate a structured onboarding guide with a… |
 | quiver-draw | execution | standard | system/quiver-draw/ | Draw a skill from skill-quiver for immediate use in this session. Shows numbered… |
 | stocktake | execution | light | system/stocktake/ | Audit Claude skills and commands for quality. Quick Scan (changed only) or Full … |
+| vault-sync | execution | standard | system/vault-sync/ | Compares private vault/ skills against the quiver public library. Surfaces dupli… |
 
 ## test/
 

@@ -10,6 +10,9 @@ DEVLOG_ARCHIVE.md
 # Staging area + source pools — never commit
 resources/
 
+# Private skill vault — user's own skills, never committed
+vault/
+
 # Claude Code local state
 .claude/settings.local.json
 .claude/worktrees/
