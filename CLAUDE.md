@@ -29,9 +29,6 @@ CDN:      Cloudflare DNS proxy              [planned]
 # Rebuild skills.json + MANIFEST.md from all SKILL.md files
 ./sync-manifest.sh
 
-# Rebuild + push compact index to Trilium
-TRILIUM_TOKEN=<token> ./sync-manifest.sh
-
 # Inject a skill into any CLI tool (non-Claude tools)
 ./bin/quiver-inject <skill-name> <cli-command...>
 # e.g.  ./bin/quiver-inject tdd-workflow codex exec "write tests for auth.ts"

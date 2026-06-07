@@ -145,9 +145,6 @@ Source pools (gitignored `resources/`) include symlinks to hermes-skills, agy-sk
 ```bash
 # Regenerates skills.json + MANIFEST.md from SKILL.md frontmatter
 ./sync-manifest.sh
-
-# Also push to Trilium (optional)
-TRILIUM_TOKEN=xxx ./sync-manifest.sh
 ```
 
 ---
