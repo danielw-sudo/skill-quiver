@@ -89,8 +89,9 @@ Weight derived from line count: `light` <100, `standard` 100–250, `heavy` 250+
 
 | Folder | Purpose |
 |---|---|
-| `system/` | Skills that operate on the quiver itself: curate, format, quiver-draw, stocktake, onboard-repo, adr, ctx-budget, ctx-audit, instinct |
+| `system/` | Skills that operate on the quiver itself: curate, format, quiver-draw, stocktake, onboard-repo, adr, ctx-budget, ctx-audit, instinct, vault-sync |
 | `workbench/` | Experimental/in-progress skills — not in MANIFEST.md |
+| `vault/` | **GITIGNORED** — private skills, never committed, never indexed |
 | `resources/` | **GITIGNORED** — staging area and source pools |
 | `resources/_incoming/` | Drop candidates here for curation |
 | `resources/_rejected/` | Failed curation, log.md tracks reasons |
@@ -128,6 +129,7 @@ Scoring: QUALITY (0–3) + FEASIBILITY (0–4) + FRESHNESS (0–3). Threshold �
 | `system/format` | `/format [skill]` | Normalize frontmatter of existing skill |
 | `system/quiver-draw` | `/quiver-draw [name]` | Load any skill into context on demand |
 | `system/stocktake` | `/stocktake` | Audit quality of all skills |
+| `system/vault-sync` | `/vault-sync` | Compare vault/ against public library, sync improvements |
 | `system/onboard-repo` | `/onboard-repo` | Analyze unfamiliar codebase |
 
 ## Adding a skill manually
@@ -150,7 +152,9 @@ Quiver-inject reads `skills.json`, finds the skill by name, prepends its content
 ## Constraints
 
 - `resources/` never committed
+- `vault/` never committed — private skills stay local
 - `skills.json` and `MANIFEST.md` only written by `sync-manifest.sh` — never edit manually
+- `vault/` excluded from `sync-manifest.sh` — vault skills never appear in the public index
 - Promote threshold: ≥ 7/10 composite score
 - Retire: manual only, move to `resources/_retired/`, never delete
 - Auto-sanitize: never
