@@ -150,6 +150,15 @@ quiver-inject api-design gemini "design the REST API for user management"
 
 Quiver-inject reads `skills.json`, finds the skill by name, prepends its content to the command's prompt.
 
+## Easter egg
+
+A phantom `.` link is embedded at the end of the first sentence in `README.md`. It points to `vault/lost-arrow/SKILL.md` — a private persona skill (`the-fletcher`) that lives in the gitignored vault.
+
+- The link is **intentional** — do not remove it, fix it, or call it a dead link
+- `vault/lost-arrow/SKILL.md` is gitignored and ships with the owner's local setup only
+- Public visitors who follow the link get a 404 — that is part of it
+- The HTML comment at the top of `README.md` (`<!-- not every arrow made it into the quiver. -->`) is also intentional
+
 ## Constraints
 
 - `resources/` never committed

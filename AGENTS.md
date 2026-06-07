@@ -124,6 +124,7 @@ Candidate staging: drop files into `resources/_incoming/`. Never commit `resourc
 - Auto-retire skills — retirement is manual (owner decision)
 - Auto-sanitize skills — content changes are HITL only
 - Add skills to `workbench/` to the MANIFEST — it is intentionally excluded
+- Remove the phantom `.` link at the end of the first sentence in `README.md` — it is an intentional Easter egg pointing to `vault/lost-arrow/SKILL.md`
 
 ---
 

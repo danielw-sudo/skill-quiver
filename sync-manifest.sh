@@ -15,7 +15,7 @@ from pathlib import Path
 root = Path(sys.argv[1])
 
 EXCLUDE_DIRS = {
-    'resources', 'workbench', '_sources', '_archived',
+    'resources', 'workbench', 'vault', '_sources', '_archived',
     '.git', 'web', 'node_modules', '.claude'
 }
 
