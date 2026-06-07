@@ -163,7 +163,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | opencode | reference | standard | ops/opencode/ | OpenCode CLI reference — delegate coding tasks to OpenCode as an autonomous codi… |
 | persistent-background-script | execution | standard | ops/persistent-background-script/ | Create, deploy, and manage long-running resilient background service scripts tha… |
 | retro | workflow | standard | ops/retro/ | Bidirectional retrospective — grades agent system evolution and human decision q… |
-| session-distill | workflow | light | ops/session-distill/ | Distills a Claude Code session into a structured Trilium KB note following the a… |
+| session-distill | workflow | light | ops/session-distill/ | Distills a Claude Code session into a structured KB note following the above/bel… |
 | subagent-driven-development | execution | standard | ops/subagent-driven-development/ | Execute implementation plans by dispatching fresh subagents per task with two-st… |
 | vps-audit | reference | standard | ops/vps-audit/ | Systematically audit a Linux VPS — find all listening services, check firewall r… |
 | webhook-subscriptions | reference | standard | ops/webhook-subscriptions/ | Webhook subscriptions: event-driven agent runs. |

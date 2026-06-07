@@ -1,11 +1,10 @@
 ---
 name: retro
-description: Bidirectional retrospective — grades agent system evolution and human decision quality. Produces a structured review note in Trilium.
+description: Bidirectional retrospective — grades agent system evolution and human decision quality. Produces a structured review note in your KB.
 type: workflow
 category: ops
 source: 2nd-brain-project
 model: any
-requires: trilium-mcp
 ---
 
 # Retro — Bidirectional Review
@@ -73,43 +72,41 @@ Evaluate decision quality with respect, not judgment. The goal is calibration, n
 
 ## Output Format
 
-Create a note in Trilium under `raw/2nd Brain` with the above/below structure:
+Write a structured note to your KB using the above/below format:
 
-```html
-<h2>Retro [date range] — Compiled Truth</h2>
+```markdown
+## Retro [date range] — Compiled Truth
 
-<h3>Agent / System: [Grade]</h3>
-<p>[2-3 sentences on current state. What's working, what's not.]</p>
-<ul>
-<li><strong>Highlight:</strong> [Best thing that happened]</li>
-<li><strong>Concern:</strong> [Pattern worth watching]</li>
-<li><strong>Action:</strong> [One concrete next step]</li>
-</ul>
+### Agent / System: [Grade]
 
-<h3>Human / Decisions: [Grade]</h3>
-<p>[2-3 sentences on decision quality. Honest, not flattering.]</p>
-<ul>
-<li><strong>Right call:</strong> [Decision that paid off, and why]</li>
-<li><strong>Watch:</strong> [Pattern that could become a problem]</li>
-<li><strong>Action:</strong> [One concrete adjustment]</li>
-</ul>
+[2-3 sentences on current state. What's working, what's not.]
 
-<h3>System Health</h3>
-<ul>
-<li>Skills: [X used / Y available] — [note if any should be retired or created]</li>
-<li>KB notes: [total] — [structured vs raw]</li>
-<li>Open items carried forward: [count and brief list]</li>
-</ul>
+- **Highlight:** [Best thing that happened]
+- **Concern:** [Pattern worth watching]
+- **Action:** [One concrete next step]
 
-<hr>
+### Human / Decisions: [Grade]
 
-<h2>Timeline</h2>
-<ul>
-<li>[date] | retro — [Review period]. Agent: [grade]. Human: [grade]. [One-line summary of key finding.]</li>
-</ul>
+[2-3 sentences on decision quality. Honest, not flattering.]
+
+- **Right call:** [Decision that paid off, and why]
+- **Watch:** [Pattern that could become a problem]
+- **Action:** [One concrete adjustment]
+
+### System Health
+
+- Skills: [X used / Y available] — [note if any should be retired or created]
+- KB notes: [total] — [structured vs raw]
+- Open items carried forward: [count and brief list]
+
+---
+
+## Timeline
+
+- [date] | retro — [Review period]. Agent: [grade]. Human: [grade]. [One-line summary of key finding.]
 ```
 
-Tag with: `noteType:memo`, `status:structured`, `retro`.
+Label with: `memo`, `status:structured`, `retro`.
 
 ## Anti-Patterns
 
