@@ -2257,6 +2257,23 @@
     "install": "cp $QUIVER_PATH/system/quiver-draw/SKILL.md .claude/skills/quiver-draw/SKILL.md"
   },
   {
+    "id": "system/retire",
+    "name": "retire",
+    "type": "execution",
+    "category": "system",
+    "description": "Retires a skill from the quiver — moves it out of the index, preserves it in resources/_retired/ for audit trail, and logs the reason. TRIGGER when: user says \"/retire [skill]\", \"retire this skill\", stocktake verdicts Retire and user confirms, or a skill is superseded by a better one.",
+    "weight": "standard",
+    "pairs_with": [
+      "system/stocktake",
+      "system/curate"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-07",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "system/retire/",
+    "install": "cp $QUIVER_PATH/system/retire/SKILL.md .claude/skills/retire/SKILL.md"
+  },
+  {
     "id": "system/stocktake",
     "name": "stocktake",
     "type": "execution",

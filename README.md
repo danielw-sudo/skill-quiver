@@ -1,6 +1,6 @@
 # skill-quiver
 
-Curated library of 166 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills.
+Curated library of 167 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills.
 
 **Primary target:** Claude Code. Compatible with Codex, Gemini CLI, and any tool that accepts skill injection.
 
@@ -78,7 +78,7 @@ The key design: keep each tool's default skill set minimal. Pull skills from the
 ```
 Your Tool
 ├── core skills (5-10 essentials, always loaded)
-└── quiver-draw (one skill, indexes all 166)
+└── quiver-draw (one skill, indexes all 167)
      └── pulls any skill on demand → context injection
 ```
 

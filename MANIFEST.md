@@ -234,6 +234,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | instinct | reference | standard | system/instinct/ | Instinct-based learning system that observes sessions via hooks, creates atomic … |
 | onboard-repo | setup | standard | system/onboard-repo/ | Analyze an unfamiliar codebase and generate a structured onboarding guide with a… |
 | quiver-draw | execution | standard | system/quiver-draw/ | Draw a skill from skill-quiver for immediate use in this session. Shows numbered… |
+| retire | execution | standard | system/retire/ | Retires a skill from the quiver — moves it out of the index, preserves it in res… |
 | stocktake | execution | light | system/stocktake/ | Audit Claude skills and commands for quality. Quick Scan (changed only) or Full … |
 | vault-sync | execution | standard | system/vault-sync/ | Compares private vault/ skills against the quiver public library. Surfaces dupli… |
 

@@ -130,6 +130,7 @@ Scoring: QUALITY (0–3) + FEASIBILITY (0–4) + FRESHNESS (0–3). Threshold �
 | `system/quiver-draw` | `/quiver-draw [name]` | Load any skill into context on demand |
 | `system/stocktake` | `/stocktake` | Audit quality of all skills |
 | `system/vault-sync` | `/vault-sync` | Compare vault/ against public library, sync improvements |
+| `system/retire` | `/retire [skill]` | Retire a skill — move out of index, preserve in _retired/ |
 | `system/onboard-repo` | `/onboard-repo` | Analyze unfamiliar codebase |
 
 ## Adding a skill manually
