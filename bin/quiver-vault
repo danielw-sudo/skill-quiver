@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+import os
+import sys
+import shutil
+import json
+import re
+
+def get_quiver_path():
+    env_path = os.environ.get("QUIVER_PATH")
+    if env_path:
+        return os.path.abspath(env_path)
+    # Fallback to script parent parent directory
+    script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return script_dir
+
+def ensure_vault_dir(quiver_path):
+    vault_dir = os.path.join(quiver_path, "vault")
+    if not os.path.exists(vault_dir):
+        os.makedirs(vault_dir)
+        print(f"Created vault directory at {vault_dir}")
+    return vault_dir
+
+def cmd_init(quiver_path):
+    ensure_vault_dir(quiver_path)
+    # Check .gitignore
+    gitignore_path = os.path.join(quiver_path, ".gitignore")
+    if os.path.exists(gitignore_path):
+        with open(gitignore_path, "r") as f:
+            content = f.read()
+        if ".antigravity/handoff.md" not in content:
+            print("Warning: .antigravity/handoff.md is not in .gitignore. You should update .gitignore.")
+    print("Vault initialization complete.")
+
+def cmd_create(quiver_path, name):
+    # Validate name (kebab-case)
+    if not re.match(r"^[a-z0-9-]+$", name):
+        print(f"Error: Skill name '{name}' must be kebab-case (alphanumeric and hyphens only).", file=sys.stderr)
+        sys.exit(1)
+        
+    vault_dir = ensure_vault_dir(quiver_path)
+    skill_dir = os.path.join(vault_dir, name)
+    if os.path.exists(skill_dir):
+        print(f"Error: Vault skill directory '{name}' already exists.", file=sys.stderr)
+        sys.exit(1)
+        
+    os.makedirs(skill_dir)
+    skill_file = os.path.join(skill_dir, "SKILL.md")
+    
+    # Simple relative lookup to write current ISO date
+    from datetime import datetime
+    iso_date = datetime.now().strftime('%Y-%m-%d')
+    
+    template = f"""---
+name: {name}
+type: execution
+category: vault
+source: original
+model: any
+description: >-
+  A custom vault skill. TRIGGER when: user asks to...
+reviewed_at: {iso_date}
+---
+
+# {name}
+
+Describe how this skill works.
+
+## Triggers
+
+- TRIGGER when: user says "run {name}"
+
+## Execution Steps
+
+1. First step
+2. Second step
+"""
+    with open(skill_file, "w") as f:
+        f.write(template)
+        
+    print(f"Created new vault skill '{name}' at {skill_file}")
+
+def cmd_clone(quiver_path, public_name, new_name):
+    # Validate new_name
+    if not re.match(r"^[a-z0-9-]+$", new_name):
+        print(f"Error: New name '{new_name}' must be kebab-case (alphanumeric and hyphens only).", file=sys.stderr)
+        sys.exit(1)
+        
+    vault_dir = ensure_vault_dir(quiver_path)
+    target_dir = os.path.join(vault_dir, new_name)
+    if os.path.exists(target_dir):
+        print(f"Error: Target vault directory '{new_name}' already exists.", file=sys.stderr)
+        sys.exit(1)
+        
+    # Find public skill in skills.json
+    skills_json_path = os.path.join(quiver_path, "skills.json")
+    if not os.path.exists(skills_json_path):
+        print(f"Error: {skills_json_path} not found. Run sync-manifest.sh first.", file=sys.stderr)
+        sys.exit(1)
+        
+    with open(skills_json_path, "r") as f:
+        skills = json.load(f)
+        
+    matches = [s for s in skills if s['name'] == public_name or s['id'] == public_name]
+    if not matches:
+        matches = [s for s in skills if public_name in s['name'] or public_name in s['id']]
+    if not matches:
+        print(f"Error: Public skill '{public_name}' not found.", file=sys.stderr)
+        sys.exit(1)
+    if len(matches) > 1:
+        print(f"Error: Ambiguous name '{public_name}' - matches: {[s['id'] for s in matches]}", file=sys.stderr)
+        sys.exit(1)
+        
+    source_dir = os.path.join(quiver_path, matches[0]['path'])
+    
+    # Copy directory structure
+    shutil.copytree(source_dir, target_dir)
+    
+    # Update target SKILL.md name in frontmatter
+    target_skill_file = os.path.join(target_dir, "SKILL.md")
+    if os.path.exists(target_skill_file):
+        with open(target_skill_file, "r") as f:
+            lines = f.readlines()
+            
+        new_lines = []
+        in_frontmatter = False
+        frontmatter_started = False
+        
+        for line in lines:
+            if line.startswith("---"):
+                if not frontmatter_started:
+                    frontmatter_started = True
+                    in_frontmatter = True
+                else:
+                    in_frontmatter = False
+            elif in_frontmatter and line.startswith("name:"):
+                line = f"name: {new_name}\n"
+            elif in_frontmatter and line.startswith("category:"):
+                line = "category: vault\n"
+            new_lines.append(line)
+            
+        with open(target_skill_file, "w") as f:
+            f.writelines(new_lines)
+            
+    print(f"Successfully cloned public skill '{matches[0]['id']}' into vault as '{new_name}'")
+
+def cmd_list(quiver_path):
+    vault_dir = os.path.join(quiver_path, "vault")
+    if not os.path.exists(vault_dir):
+        print("Vault has not been initialized. No custom skills found.")
+        return
+        
+    skills = []
+    for d in sorted(os.listdir(vault_dir)):
+        skill_dir = os.path.join(vault_dir, d)
+        if os.path.isdir(skill_dir):
+            skill_md = os.path.join(skill_dir, "SKILL.md")
+            if os.path.exists(skill_md):
+                # Read description and type from frontmatter if possible
+                with open(skill_md, "r") as f:
+                    content = f.read()
+                
+                # Extract description and type
+                type_match = re.search(r"^type:\s*(.*)", content, re.MULTILINE)
+                desc_match = re.search(r"^description:\s*(?:>-\s*)?(.*)", content, re.MULTILINE)
+                
+                s_type = type_match.group(1).strip() if type_match else "reference"
+                s_desc = desc_match.group(1).strip() if desc_match else ""
+                
+                # Check for continuation lines in description
+                if desc_match and (content.find("description: >-") != -1 or content.find("description: >") != -1):
+                    # collect lines
+                    lines = content.splitlines()
+                    desc_idx = -1
+                    for idx, line in enumerate(lines):
+                        if line.startswith("description:"):
+                            desc_idx = idx
+                            break
+                    if desc_idx != -1:
+                        desc_lines = []
+                        i = desc_idx + 1
+                        while i < len(lines) and (lines[i].startswith("  ") or lines[i] == ""):
+                            desc_lines.append(lines[i].strip())
+                            i += 1
+                        s_desc = " ".join(desc_lines).strip()
+                
+                skills.append({
+                    "name": d,
+                    "type": s_type,
+                    "path": f"vault/{d}/",
+                    "description": s_desc
+                })
+                
+    if not skills:
+        print("Vault is empty. Use 'quiver-vault create <name>' to add a new skill.")
+        return
+        
+    print(f"Vault Skills ({len(skills)}):")
+    print("-" * 80)
+    print(f"{'Name':<25} | {'Type':<10} | {'Description'}")
+    print("-" * 80)
+    for s in skills:
+        desc = s['description'][:40] + ("..." if len(s['description']) > 40 else "")
+        print(f"{s['name']:<25} | {s['type']:<10} | {desc}")
+
+def print_help():
+    print("""quiver-vault — Manage your private skill vault
+
+Usage:
+  quiver-vault init                      Initialize the vault folder
+  quiver-vault create <skill-name>       Create a new vault skill from a template (kebab-case)
+  quiver-vault clone <public-id> <name>  Clone a public skill to vault for customization
+  quiver-vault list                      List all skills currently in the vault
+""")
+
+def main():
+    if len(sys.argv) < 2:
+        print_help()
+        sys.exit(1)
+        
+    cmd = sys.argv[1]
+    quiver_path = get_quiver_path()
+    
+    if cmd == "init":
+        cmd_init(quiver_path)
+    elif cmd == "create":
+        if len(sys.argv) < 3:
+            print("Error: Missing skill name. Usage: quiver-vault create <skill-name>", file=sys.stderr)
+            sys.exit(1)
+        cmd_create(quiver_path, sys.argv[2])
+    elif cmd == "clone":
+        if len(sys.argv) < 4:
+            print("Error: Missing arguments. Usage: quiver-vault clone <public-id> <new-name>", file=sys.stderr)
+            sys.exit(1)
+        cmd_clone(quiver_path, sys.argv[2], sys.argv[3])
+    elif cmd == "list":
+        cmd_list(quiver_path)
+    elif cmd in ("-h", "--help", "help"):
+        print_help()
+    else:
+        print(f"Error: Unknown command '{cmd}'", file=sys.stderr)
+        print_help()
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

@@ -114,22 +114,30 @@ Hook fires on every prompt — heavier, but works across all projects without to
 
 Clone or fork this repo and keep your own private skills in `vault/` — a gitignored directory that never leaves your machine.
 
-```bash
-# Create your vault
-mkdir -p $QUIVER_PATH/vault/my-workflow
+You can manage your vault using the built-in `quiver-vault` CLI manager:
 
-# Add a skill
-cp my-skill.md $QUIVER_PATH/vault/my-workflow/SKILL.md
+```bash
+# Initialize the vault directory
+$QUIVER_PATH/bin/quiver-vault init
+
+# Create a new private skill from a standard template
+$QUIVER_PATH/bin/quiver-vault create my-workflow
+
+# Clone an existing public skill into the vault to customize it
+$QUIVER_PATH/bin/quiver-vault clone codebase-inspection my-inspection
+
+# List all skills currently in your vault
+$QUIVER_PATH/bin/quiver-vault list
 ```
 
-Vault skills work with all the same tools: `quiver-draw` loads them on demand, `quiver-inject` injects them into any CLI. They never appear in `skills.json` or `MANIFEST.md`.
+Vault skills work seamlessly with [quiver-inject](file:///mnt/d/cc/skill-quiver/bin/quiver-inject) and `quiver-draw` without appearing in the public `skills.json` or `MANIFEST.md` indexes. `quiver-inject` will automatically scan your `vault/` folder first, falling back to the public repository index if not found.
 
 Use `/vault-sync` to compare your vault against the public library — it surfaces overlaps, gaps, and improvement opportunities without sharing your vault content with anyone.
 
 ```
 vault/
-  client-intake/SKILL.md      ← your proprietary process
-  deal-flow/SKILL.md          ← your methodology
+  my-workflow/SKILL.md        ← your custom execution skill
+  my-inspection/SKILL.md      ← your customized public clone
   NOTES.md                    ← vault-sync audit trail
 ```
 

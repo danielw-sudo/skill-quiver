@@ -13,6 +13,9 @@ resources/
 # Private skill vault — user's own skills, never committed
 vault/
 
+# Agent context (volatile session state)
+.antigravity/handoff.md
+
 # Claude Code local state
 .claude/settings.local.json
 .claude/worktrees/

@@ -10,7 +10,8 @@
 
 set -euo pipefail
 
-QUIVER="${QUIVER_PATH:-$HOME/projects/skill-quiver}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+QUIVER="${QUIVER_PATH:-$(dirname "$SCRIPT_DIR")}"
 
 if [ $# -lt 2 ]; then
   echo "Usage: quiver-inject <skill-name> <cli> [args...]" >&2
@@ -19,10 +20,33 @@ fi
 
 SKILL_NAME="$1"; shift
 
-# Resolve skill path from skills.json
+# Resolve skill path from vault/ or skills.json
 SKILL_PATH=$(python3 - "$QUIVER" "$SKILL_NAME" <<'PYEOF'
-import sys, json
+import sys, json, os
 quiver, name = sys.argv[1], sys.argv[2]
+
+# 1. Try to resolve from vault/ first
+vault_dir = os.path.join(quiver, "vault")
+candidate_direct = os.path.join(vault_dir, name, "SKILL.md")
+if os.path.exists(candidate_direct):
+    print(candidate_direct)
+    sys.exit(0)
+
+# Check if there is a fuzzy match in vault/
+if os.path.exists(vault_dir):
+    vault_matches = []
+    for d in os.listdir(vault_dir):
+        if os.path.isdir(os.path.join(vault_dir, d)):
+            if name in d and os.path.exists(os.path.join(vault_dir, d, "SKILL.md")):
+                vault_matches.append(d)
+    if len(vault_matches) == 1:
+        print(os.path.join(vault_dir, vault_matches[0], "SKILL.md"))
+        sys.exit(0)
+    elif len(vault_matches) > 1:
+        print(f"ERROR: ambiguous in vault — matches: {vault_matches}", file=sys.stderr)
+        sys.exit(1)
+
+# 2. Fallback to skills.json
 try:
     skills = json.load(open(f"{quiver}/skills.json"))
 except FileNotFoundError:
@@ -34,7 +58,7 @@ if not matches:
     # fuzzy: substring match on name
     matches = [s for s in skills if name in s['name'] or name in s['id']]
 if not matches:
-    print(f"ERROR: skill '{name}' not found in skills.json", file=sys.stderr)
+    print(f"ERROR: skill '{name}' not found in vault/ or skills.json", file=sys.stderr)
     sys.exit(1)
 if len(matches) > 1:
     print(f"ERROR: ambiguous — matches: {[s['id'] for s in matches]}", file=sys.stderr)
