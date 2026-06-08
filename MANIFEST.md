@@ -244,6 +244,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | instinct | reference | standard | system/instinct/ | Instinct-based learning system that observes sessions via hooks, creates atomic … |
 | kickoff | execution | light | system/kickoff/ | Session bootstrapper. Reads the consolidated handoff, README, development logs, … |
 | onboard-repo | setup | standard | system/onboard-repo/ | Analyze an unfamiliar codebase and generate a structured onboarding guide with a… |
+| quiver | execution | light | system/quiver/ | Dynamic remote loader and package manager for skill-quiver. Search, draw, or ins… |
 | quiver-draw | execution | standard | system/quiver-draw/ | Draw a skill from skill-quiver for immediate use in this session. Shows numbered… |
 | retire | execution | standard | system/retire/ | Retires a skill from the quiver — moves it out of the index, preserves it in res… |
 | stocktake | execution | light | system/stocktake/ | Audit Claude skills and commands for quality. Quick Scan (changed only) or Full … |

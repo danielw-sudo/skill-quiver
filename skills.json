@@ -2403,6 +2403,20 @@
     "install": "cp $QUIVER_PATH/system/onboard-repo/SKILL.md .claude/skills/onboard-repo/SKILL.md"
   },
   {
+    "id": "system/quiver",
+    "name": "quiver",
+    "type": "execution",
+    "category": "system",
+    "description": "Dynamic remote loader and package manager for skill-quiver. Search, draw, or install skills directly from the public GitHub repository. TRIGGER when: user runs `/quiver`, `/quiver find`, `/quiver search`, `/quiver draw`, or `/quiver install`.",
+    "weight": "light",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "system/quiver/",
+    "install": "cp $QUIVER_PATH/system/quiver/SKILL.md .claude/skills/quiver/SKILL.md"
+  },
+  {
     "id": "system/quiver-draw",
     "name": "quiver-draw",
     "type": "execution",
