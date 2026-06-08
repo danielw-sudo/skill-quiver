@@ -14,6 +14,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | api-design | reference | heavy | code/patterns/api/ | REST API design patterns including resource naming, status codes, pagination, fi… |
 | backend-architect | persona | light | code/backend-architect/ | Senior backend architect for system design, database architecture, API developme… |
 | backend-patterns | reference | heavy | code/patterns/backend/ | Backend architecture patterns, API design, database optimization, and server-sid… |
+| bun-runtime | reference | light | code/patterns/bun/ | Bun as a high-performance JavaScript runtime, package manager, bundler, and test… |
 | codebase-inspection | reference | standard | code/codebase-inspection/ | Inspect codebases w/ pygount: LOC, languages, ratios. |
 | coding-standards | reference | heavy | code/patterns/standards/ | Universal coding standards, best practices, and patterns for TypeScript, JavaScr… |
 | database-migrations | reference | heavy | code/tools/db-migrate/ | Database migration best practices for schema changes, data migrations, rollbacks… |
@@ -34,6 +35,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
+| documentation-lookup | execution | light | code/tools/documentation-lookup/ | Live documentation and code reference lookup via the Context7 MCP server. TRIGGE… |
 | extract | execution | light | code/tools/extract/ | Extract and consolidate reusable components, design tokens, and patterns into yo… |
 | frontend-dev | execution | heavy | code/tools/fe-dev/ | | |
 | harden | execution | heavy | code/tools/harden/ | Improve interface resilience through better error handling, i18n support, text o… |
@@ -42,6 +44,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | native-mcp | reference | heavy | code/tools/native-mcp/ | MCP client: connect servers, register tools (stdio/HTTP). |
 | optimize | execution | heavy | code/tools/optimize/ | Improve interface performance across loading speed, rendering, animations, image… |
 | python-data-pipeline | reference | standard | code/tools/python-data-pipeline/ | Build robust multi-stage data processing pipelines using Python. Covers the Inpu… |
+| url-to-markdown | execution | heavy | code/tools/url-to-markdown/ | Fetch any URL and convert it to clean markdown using Chrome CDP with site-specif… |
 
 ## design/core/
 
@@ -108,6 +111,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | manim-video | reference | heavy | domain/manim-video/ | Manim CE animations: 3Blue1Brown math/algo videos. |
 | maps | reference | standard | domain/maps/ | Geocode, POIs, routes, timezones via OpenStreetMap/OSRM. |
 | nano-pdf | reference | light | domain/nano-pdf/ | Edit PDF text/typos/titles via nano-pdf CLI (NL prompts). |
+| notebooklm | execution | heavy | domain/notebooklm/ | Interact with Google NotebookLM to query documentation with Gemini's source-grou… |
 | notion | reference | heavy | domain/notion/ | Notion API + ntn CLI: pages, databases, markdown, Workers. |
 | ocr-and-documents | reference | standard | domain/ocr-and-documents/ | Extract text from PDFs/scans (pymupdf, marker-pdf). |
 | p5js | reference | heavy | domain/p5js/ | p5.js sketches: gen art, shaders, interactive, 3D. |
@@ -121,6 +125,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | spotify | reference | standard | domain/spotify/ | Spotify: play, search, queue, manage playlists and devices. |
 | teams-meeting-pipeline | reference | standard | domain/teams-meeting/ | Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, … |
 | touchdesigner-mcp | reference | heavy | domain/touchdesigner/ | Control a running TouchDesigner instance via twozero MCP — create operators, set… |
+| translate | execution | heavy | domain/translate/ | Translate articles and documents between languages with quick, normal, or refine… |
 | vids-pipeline | reference | light | domain/vids-pipeline/ | 4-phase HITL video pipeline. Always use terminal() to run runner.sh. Never run r… |
 | xlsx | execution | standard | domain/xlsx/ | Open, create, read, analyze, edit, or validate Excel/spreadsheet files (.xlsx, .… |
 | youtube-content | reference | light | domain/youtube-content/ | YouTube transcripts to summaries, threads, blogs. |
@@ -187,18 +192,23 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | arxiv | reference | heavy | prompt/arxiv/ | Search arXiv papers by keyword, author, category, or ID. |
 | baoyu-article-illustrator | reference | standard | prompt/baoyu-article-illustrator/ | Article illustrations: type × style × palette consistency. |
 | blogwatcher | reference | standard | prompt/blogwatcher/ | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
+| concept-anatomy | execution | light | prompt/concept-anatomy/ | Deconstruct any concept through eight cognitive dimensions (history, dialectic, … |
 | content | reference | light | prompt/content/ | Create platform-native content systems for X, LinkedIn, TikTok, YouTube, newslet… |
+| deep-research | execution | standard | prompt/deep-research/ | Produce thorough, cited research reports from multiple web sources using firecra… |
 | humanizer | reference | heavy | prompt/humanizer/ | Humanize text: strip AI-isms and add real voice. |
 | ideation | reference | standard | prompt/creative-ideation/ | Generate project ideas via creative constraints. |
 | last30days | reference | heavy | prompt/last30days/ | Research what people actually say about any topic in the last 30 days. Pulls pos… |
+| paper-reader | execution | standard | prompt/paper-reader/ | Extract, analyze, and translate the core findings, methods, and practical implic… |
 | polymarket | reference | light | prompt/polymarket/ | Query Polymarket: markets, prices, orderbooks, history. |
 | prompt-engineer | reference | light | prompt/prompt-engineer/ | LLM prompt design and optimization specialist — system prompts, chain-of-thought… |
 | prompt-tune | execution | heavy | prompt/prompt-tune/ | Analyze raw prompts, identify intent and gaps, match ECC components (skills/comm… |
 | reddit-community-builder | reference | light | prompt/reddit-community-builder/ | Reddit community growth specialist — authentic engagement, value-driven content,… |
 | research | execution | standard | prompt/research/ | Multi-source deep research using firecrawl and exa MCPs. Searches the web, synth… |
+| roundtable-debate | execution | standard | prompt/roundtable-debate/ | Structured roundtable discussion framework that invites representative figures f… |
 | seo-specialist | reference | light | prompt/seo-specialist/ | SEO strategist covering technical SEO, content optimization, link authority, and… |
 | story-hooks | reference | standard | prompt/story-hooks/ | Find interesting, positive, shareable story hooks from history, news, or data. T… |
 | twitter-engager | reference | light | prompt/twitter-engager/ | Twitter/X growth specialist — thought leadership, community engagement, viral th… |
+| writing-engine | execution | standard | prompt/writing-engine/ | Structured writing assistant engine that explores and refines a perspective thro… |
 | xiaohongshu-specialist | reference | light | prompt/xiaohongshu-specialist/ | Xiaohongshu (小红书) content and growth specialist — lifestyle content, trend-drive… |
 | xitter | reference | standard | prompt/xitter/ | Interact with X/Twitter via the x-cli terminal client using official X API crede… |
 | xurl | reference | heavy | prompt/xurl/ | X/Twitter via xurl CLI: post, search, DM, media, v2 API. |
@@ -232,6 +242,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | curate | execution | standard | system/curate/ | HITL skill curation pipeline. Evaluates a candidate skill against quality/ feasi… |
 | format | execution | standard | system/format/ | Normalize an existing SKILL.md to quiver frontmatter spec. Checks completeness, … |
 | instinct | reference | standard | system/instinct/ | Instinct-based learning system that observes sessions via hooks, creates atomic … |
+| kickoff | execution | light | system/kickoff/ | Session bootstrapper. Reads the consolidated handoff, README, development logs, … |
 | onboard-repo | setup | standard | system/onboard-repo/ | Analyze an unfamiliar codebase and generate a structured onboarding guide with a… |
 | quiver-draw | execution | standard | system/quiver-draw/ | Draw a skill from skill-quiver for immediate use in this session. Shows numbered… |
 | retire | execution | standard | system/retire/ | Retires a skill from the quiver — moves it out of the index, preserves it in res… |

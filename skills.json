@@ -144,6 +144,20 @@
     "install": "cp $QUIVER_PATH/code/patterns/backend/SKILL.md .claude/skills/backend-patterns/SKILL.md"
   },
   {
+    "id": "code/patterns/bun",
+    "name": "bun-runtime",
+    "type": "reference",
+    "category": "code",
+    "description": "Bun as a high-performance JavaScript runtime, package manager, bundler, and test runner.",
+    "weight": "light",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/patterns/bun/",
+    "install": "cp $QUIVER_PATH/code/patterns/bun/SKILL.md .claude/skills/bun-runtime/SKILL.md"
+  },
+  {
     "id": "code/patterns/frontend",
     "name": "frontend-patterns",
     "type": "reference",
@@ -248,6 +262,22 @@
     "model_tested": null,
     "path": "code/tools/db-migrate/",
     "install": "cp $QUIVER_PATH/code/tools/db-migrate/SKILL.md .claude/skills/database-migrations/SKILL.md"
+  },
+  {
+    "id": "code/tools/documentation-lookup",
+    "name": "documentation-lookup",
+    "type": "execution",
+    "category": "code/tools",
+    "description": "Live documentation and code reference lookup via the Context7 MCP server. TRIGGER when: user asks configuration, setup, or API reference questions regarding a library or framework.",
+    "weight": "light",
+    "pairs_with": [
+      "code/coding-standards"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/tools/documentation-lookup/",
+    "install": "cp $QUIVER_PATH/code/tools/documentation-lookup/SKILL.md .claude/skills/documentation-lookup/SKILL.md"
   },
   {
     "id": "code/tools/extract",
@@ -380,6 +410,20 @@
     "model_tested": "claude-sonnet-4-6",
     "path": "code/tools/python-data-pipeline/",
     "install": "cp $QUIVER_PATH/code/tools/python-data-pipeline/SKILL.md .claude/skills/python-data-pipeline/SKILL.md"
+  },
+  {
+    "id": "code/tools/url-to-markdown",
+    "name": "url-to-markdown",
+    "type": "execution",
+    "category": "code/tools",
+    "description": "Fetch any URL and convert it to clean markdown using Chrome CDP with site-specific adapters for X/Twitter, YouTube, and Hacker News. TRIGGER when: user asks to save a webpage or URL as markdown.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "code/tools/url-to-markdown/",
+    "install": "cp $QUIVER_PATH/code/tools/url-to-markdown/SKILL.md .claude/skills/url-to-markdown/SKILL.md"
   },
   {
     "id": "design/core/architecture-diagram",
@@ -942,6 +986,22 @@
     "install": "cp $QUIVER_PATH/domain/nano-pdf/SKILL.md .claude/skills/nano-pdf/SKILL.md"
   },
   {
+    "id": "domain/notebooklm",
+    "name": "notebooklm",
+    "type": "execution",
+    "category": "domain",
+    "description": "Interact with Google NotebookLM to query documentation with Gemini's source-grounded answers. TRIGGER when: user mentions NotebookLM, shares a NotebookLM URL, or asks to query their notebooks.",
+    "weight": "heavy",
+    "pairs_with": [
+      "domain/ocr-and-documents"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "domain/notebooklm/",
+    "install": "cp $QUIVER_PATH/domain/notebooklm/SKILL.md .claude/skills/notebooklm/SKILL.md"
+  },
+  {
     "id": "domain/notion",
     "name": "notion",
     "type": "reference",
@@ -1122,6 +1182,20 @@
     "model_tested": null,
     "path": "domain/touchdesigner/",
     "install": "cp $QUIVER_PATH/domain/touchdesigner/SKILL.md .claude/skills/touchdesigner-mcp/SKILL.md"
+  },
+  {
+    "id": "domain/translate",
+    "name": "translate",
+    "type": "execution",
+    "category": "domain",
+    "description": "Translate articles and documents between languages with quick, normal, or refined translation workflows. TRIGGER when: user asks to translate, proofread, or localize a document or URL.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "domain/translate/",
+    "install": "cp $QUIVER_PATH/domain/translate/SKILL.md .claude/skills/translate/SKILL.md"
   },
   {
     "id": "domain/vids-pipeline",
@@ -1805,6 +1879,20 @@
     "install": "cp $QUIVER_PATH/prompt/blogwatcher/SKILL.md .claude/skills/blogwatcher/SKILL.md"
   },
   {
+    "id": "prompt/concept-anatomy",
+    "name": "concept-anatomy",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Deconstruct any concept through eight cognitive dimensions (history, dialectic, phenomenology, linguistics, formalization, existentialism, aesthetics, meta-philosophy) and compress insights into an epiphany in org-mode. TRIGGER when: user asks to explain, dissect, or deeply understand a concept, term, or idea.",
+    "weight": "light",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "prompt/concept-anatomy/",
+    "install": "cp $QUIVER_PATH/prompt/concept-anatomy/SKILL.md .claude/skills/concept-anatomy/SKILL.md"
+  },
+  {
     "id": "prompt/content",
     "name": "content",
     "type": "reference",
@@ -1833,6 +1921,22 @@
     "install": "cp $QUIVER_PATH/prompt/creative-ideation/SKILL.md .claude/skills/ideation/SKILL.md"
   },
   {
+    "id": "prompt/deep-research",
+    "name": "deep-research",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Produce thorough, cited research reports from multiple web sources using firecrawl and exa MCP tools. TRIGGER when: user asks to research a topic in depth or perform competitive/market analysis.",
+    "weight": "standard",
+    "pairs_with": [
+      "prompt/research"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "prompt/deep-research/",
+    "install": "cp $QUIVER_PATH/prompt/deep-research/SKILL.md .claude/skills/deep-research/SKILL.md"
+  },
+  {
     "id": "prompt/humanizer",
     "name": "humanizer",
     "type": "reference",
@@ -1859,6 +1963,20 @@
     "model_tested": null,
     "path": "prompt/last30days/",
     "install": "cp $QUIVER_PATH/prompt/last30days/SKILL.md .claude/skills/last30days/SKILL.md"
+  },
+  {
+    "id": "prompt/paper-reader",
+    "name": "paper-reader",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Extract, analyze, and translate the core findings, methods, and practical implications of academic papers for personal use. TRIGGER when: user shares an arXiv link, paper URL, PDF, or asks to analyze a research paper.",
+    "weight": "standard",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "prompt/paper-reader/",
+    "install": "cp $QUIVER_PATH/prompt/paper-reader/SKILL.md .claude/skills/paper-reader/SKILL.md"
   },
   {
     "id": "prompt/polymarket",
@@ -1931,6 +2049,20 @@
     "install": "cp $QUIVER_PATH/prompt/research/SKILL.md .claude/skills/research/SKILL.md"
   },
   {
+    "id": "prompt/roundtable-debate",
+    "name": "roundtable-debate",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Structured roundtable discussion framework that invites representative figures for dialectical debate on a topic. TRIGGER when: user asks for a roundtable, debate, or multi-perspective discussion on a topic.",
+    "weight": "standard",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "prompt/roundtable-debate/",
+    "install": "cp $QUIVER_PATH/prompt/roundtable-debate/SKILL.md .claude/skills/roundtable-debate/SKILL.md"
+  },
+  {
     "id": "prompt/seo-specialist",
     "name": "seo-specialist",
     "type": "reference",
@@ -1971,6 +2103,20 @@
     "model_tested": null,
     "path": "prompt/twitter-engager/",
     "install": "cp $QUIVER_PATH/prompt/twitter-engager/SKILL.md .claude/skills/twitter-engager/SKILL.md"
+  },
+  {
+    "id": "prompt/writing-engine",
+    "name": "writing-engine",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Structured writing assistant engine that explores and refines a perspective through natural, low-AI-signature prose and computer-science analogical framing. TRIGGER when: user asks to write an article, essay, or thoughts about a specific topic.",
+    "weight": "standard",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "prompt/writing-engine/",
+    "install": "cp $QUIVER_PATH/prompt/writing-engine/SKILL.md .claude/skills/writing-engine/SKILL.md"
   },
   {
     "id": "prompt/xiaohongshu-specialist",
@@ -2227,6 +2373,20 @@
     "model_tested": null,
     "path": "system/instinct/",
     "install": "cp $QUIVER_PATH/system/instinct/SKILL.md .claude/skills/instinct/SKILL.md"
+  },
+  {
+    "id": "system/kickoff",
+    "name": "kickoff",
+    "type": "execution",
+    "category": "system",
+    "description": "Session bootstrapper. Reads the consolidated handoff, README, development logs, and active baseline to establish session awareness and recommend next tasks. TRIGGER when: user says \"/kickoff\", \"kickoff\", \"start session\", or \"boot session\".",
+    "weight": "light",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": null,
+    "model_tested": null,
+    "path": "system/kickoff/",
+    "install": "cp $QUIVER_PATH/system/kickoff/SKILL.md .claude/skills/kickoff/SKILL.md"
   },
   {
     "id": "system/onboard-repo",
