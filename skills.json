@@ -1570,7 +1570,7 @@
     "name": "retro",
     "type": "workflow",
     "category": "ops",
-    "description": "Bidirectional retrospective — grades agent system evolution and human decision quality. Produces a structured review note in Trilium.",
+    "description": "Bidirectional retrospective — grades agent system evolution and human decision quality. Produces a structured review note in your KB.",
     "weight": "standard",
     "pairs_with": [],
     "proven_on": [],
@@ -1584,7 +1584,7 @@
     "name": "session-distill",
     "type": "workflow",
     "category": "ops",
-    "description": "Distills a Claude Code session into a structured Trilium KB note following the above/below the line format. Captures actionable insights, not raw transcripts.",
+    "description": "Distills a Claude Code session into a structured KB note following the above/below the line format. Captures actionable insights, not raw transcripts.",
     "weight": "light",
     "pairs_with": [],
     "proven_on": [],
@@ -2257,6 +2257,23 @@
     "install": "cp $QUIVER_PATH/system/quiver-draw/SKILL.md .claude/skills/quiver-draw/SKILL.md"
   },
   {
+    "id": "system/retire",
+    "name": "retire",
+    "type": "execution",
+    "category": "system",
+    "description": "Retires a skill from the quiver — moves it out of the index, preserves it in resources/_retired/ for audit trail, and logs the reason. TRIGGER when: user says \"/retire [skill]\", \"retire this skill\", stocktake verdicts Retire and user confirms, or a skill is superseded by a better one.",
+    "weight": "standard",
+    "pairs_with": [
+      "system/stocktake",
+      "system/curate"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-07",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "system/retire/",
+    "install": "cp $QUIVER_PATH/system/retire/SKILL.md .claude/skills/retire/SKILL.md"
+  },
+  {
     "id": "system/stocktake",
     "name": "stocktake",
     "type": "execution",
@@ -2269,6 +2286,24 @@
     "model_tested": null,
     "path": "system/stocktake/",
     "install": "cp $QUIVER_PATH/system/stocktake/SKILL.md .claude/skills/stocktake/SKILL.md"
+  },
+  {
+    "id": "system/vault-sync",
+    "name": "vault-sync",
+    "type": "execution",
+    "category": "system",
+    "description": "Compares private vault/ skills against the quiver public library. Surfaces duplicates, overlaps, gaps, and improvement opportunities. Executes approved actions: absorb, revise, merge, append, or note. TRIGGER when: user says \"/vault-sync\", \"check my vault\", \"compare vault to quiver\", or \"what's new in quiver\".",
+    "weight": "standard",
+    "pairs_with": [
+      "system/curate",
+      "system/format",
+      "system/stocktake"
+    ],
+    "proven_on": [],
+    "reviewed_at": "2026-06-07",
+    "model_tested": "claude-sonnet-4-6",
+    "path": "system/vault-sync/",
+    "install": "cp $QUIVER_PATH/system/vault-sync/SKILL.md .claude/skills/vault-sync/SKILL.md"
   },
   {
     "id": "test/a11y-audit",

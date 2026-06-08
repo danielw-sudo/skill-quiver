@@ -1,16 +1,15 @@
 ---
 name: session-distill
-description: Distills a Claude Code session into a structured Trilium KB note following the above/below the line format. Captures actionable insights, not raw transcripts.
+description: Distills a Claude Code session into a structured KB note following the above/below the line format. Captures actionable insights, not raw transcripts.
 type: workflow
 category: ops
 source: 2nd-brain-project
 model: any
-requires: trilium-mcp
 ---
 
 # Session Distillation
 
-Processes a Claude Code session into a structured knowledge base note in Trilium. The goal is distillation, not transcription — extract what matters, discard the noise.
+Processes a Claude Code session into a structured knowledge base note. The goal is distillation, not transcription — extract what matters, discard the noise.
 
 ## When to Activate
 
@@ -76,7 +75,7 @@ Apply these labels to the created note:
 ## Process
 
 1. **Scan the session** — identify decisions, discoveries, things built, approaches validated/invalidated
-2. **Check existing notes** — search Trilium for related notes. If this session updates an existing topic, update that note's compiled truth and append to its timeline instead of creating a new note
+2. **Check existing notes** — search your KB for related notes. If this session updates an existing topic, update that note's compiled truth and append to its timeline instead of creating a new note
 3. **Write compiled truth** — distill to present-tense facts. Be ruthless about what earns inclusion
 4. **Write timeline entry** — one entry for this session with key details
 5. **Tag the note** — apply labels per the table above
@@ -91,7 +90,7 @@ Apply these labels to the created note:
 
 ## Example
 
-A session that verified trilium-mcp, fixed an n8n workflow, and deployed a dashboard would produce:
+A session that verified an MCP integration, fixed an automation workflow, and deployed a dashboard would produce:
 
 **Compiled truth:** current state of each service (working/broken, ports, configurations).
 **Timeline:** single entry dated today, listing what was verified, what was fixed, what was deployed, with specific config values.

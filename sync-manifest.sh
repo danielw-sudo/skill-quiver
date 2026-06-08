@@ -1,11 +1,9 @@
 #!/bin/bash
 # sync-manifest.sh
 # Scans all SKILL.md files → regenerates MANIFEST.md + emits skills.json
-# Optional: push compact index to Trilium (set TRILIUM_TOKEN env var)
 #
 # Usage:
-#   ./sync-manifest.sh              # rebuild MANIFEST.md + skills.json
-#   TRILIUM_TOKEN=xxx ./sync-manifest.sh   # also push to Trilium
+#   ./sync-manifest.sh
 
 set -euo pipefail
 QUIVER_ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -17,7 +15,7 @@ from pathlib import Path
 root = Path(sys.argv[1])
 
 EXCLUDE_DIRS = {
-    'resources', 'workbench', '_sources', '_archived',
+    'resources', 'workbench', 'vault', '_sources', '_archived',
     '.git', 'web', 'node_modules', '.claude'
 }
 
@@ -146,22 +144,3 @@ manifest = root / 'MANIFEST.md'
 manifest.write_text('\n'.join(lines) + '\n')
 print(f'MANIFEST.md: {sum(len(v) for v in by_cat.values())} skills across {len(by_cat)} categories')
 PYEOF
-
-# --- Optional: push to Trilium ---
-if [ -n "${TRILIUM_TOKEN:-}" ]; then
-  TRILIUM_URL="${TRILIUM_URL:-http://localhost:37840}"
-  NOTE_ID="kpIA1RoIFb6V"
-  # Build compact index from skills.json
-  python3 -c "
-import json, sys
-skills = json.load(open('$QUIVER_ROOT/skills.json'))
-for i, s in enumerate(skills, 1):
-    print(f'{i:>3}  {s[\"name\"]:<28} {s[\"type\"]:<12} {s[\"description\"][:50]}')
-" > /tmp/skill-index.txt
-  curl -s -X PUT "${TRILIUM_URL}/etapi/notes/${NOTE_ID}/content" \
-    -H "Authorization: ${TRILIUM_TOKEN}" \
-    -H "Content-Type: text/plain" \
-    -T /tmp/skill-index.txt
-  echo "Synced to Trilium note ${NOTE_ID}"
-  rm /tmp/skill-index.txt
-fi

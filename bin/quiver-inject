@@ -93,12 +93,19 @@ $LAST"
     exec "$CLI_BIN" "${CLI_ARGS[@]}"
     ;;
   claude)
-    # claude -p supports multi-line prompt
-    exec "$CLI_BIN" -p "$SKILL_CONTENT
+    # claude -p supports multi-line prompt; treat last arg as the user prompt,
+    # pass any preceding args (flags) through separately
+    if [ ${#CLI_ARGS[@]} -gt 0 ]; then
+      LAST="${CLI_ARGS[-1]}"
+      unset 'CLI_ARGS[-1]'
+      exec "$CLI_BIN" "${CLI_ARGS[@]}" -p "$SKILL_CONTENT
 
 ---
 
-${CLI_ARGS[*]}"
+$LAST"
+    else
+      exec "$CLI_BIN" -p "$SKILL_CONTENT"
+    fi
     ;;
   *)
     # Generic: print skill then exec (for piped use)

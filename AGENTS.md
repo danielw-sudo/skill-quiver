@@ -106,6 +106,7 @@ Candidate staging: drop files into `resources/_incoming/`. Never commit `resourc
 | `baseline.json` | Human owner only | Update when models deprecate |
 | `system/`, `review/`, `<categories>/` | Agent (with curation) | Follow frontmatter spec |
 | `workbench/` | Agent freely | Experimental, not indexed |
+| `vault/` | Never committed | Gitignored private skills — owner only |
 | `resources/` | Never committed | Gitignored staging area |
 | `bin/` | Agent (with care) | Scripts — test before committing |
 | `CLAUDE.md` | Agent | Keep accurate and current |
@@ -118,10 +119,12 @@ Candidate staging: drop files into `resources/_incoming/`. Never commit `resourc
 
 - Edit `skills.json` or `MANIFEST.md` manually — run `sync-manifest.sh`
 - Commit anything under `resources/`
+- Commit anything under `vault/` — private skills never leave the local machine
 - Auto-promote skills without security scan
 - Auto-retire skills — retirement is manual (owner decision)
 - Auto-sanitize skills — content changes are HITL only
 - Add skills to `workbench/` to the MANIFEST — it is intentionally excluded
+- Remove the phantom `.` link at the end of the first sentence in `README.md` — it is an intentional Easter egg pointing to `vault/lost-arrow/SKILL.md`
 
 ---
 

@@ -5,12 +5,11 @@ type: workflow
 category: ops
 source: 2nd-brain-project
 model: any
-requires: trilium-mcp
 ---
 
 # Maintain — KB Chore Runner
 
-Scans the Trilium knowledge base, identifies notes that need attention, and surfaces findings for human review. Does NOT fix autonomously — proposes actions, human decides.
+Scans your knowledge base, identifies notes that need attention, and surfaces findings for human review. Does NOT fix autonomously — proposes actions, human decides.
 
 ## When to Activate
 
@@ -24,7 +23,7 @@ Scans the Trilium knowledge base, identifies notes that need attention, and surf
 Run these in order. Each check produces a finding or "clean."
 
 ### 1. Untagged Notes
-Search for notes under `raw/2nd Brain` missing the `noteType` label.
+Search for notes in your KB missing the `noteType` label.
 
 **Action:** For each, propose a `noteType` value based on content inspection:
 - External source capture → `reference`
@@ -57,7 +56,7 @@ When rotating a live entry:
 4. Do NOT index the child. Do NOT add it to the timeline note. It exists for historical reference only.
 
 ### 4. Orphan Notes
-Search for notes under `raw/2nd Brain` that are not referenced in the index (timeline note) and are not children of other notes.
+Search for notes in your KB that are not referenced in the index (timeline note) and are not children of other notes.
 
 **Action:** For each orphan:
 - If it has value: propose adding it to the index under the appropriate type section
@@ -76,7 +75,7 @@ List all labels in use across KB notes. Check for:
 ### 6. Missing Cross-References
 Scan compiled truth sections for mentions of known entities (project names, tool names, concepts) that have their own notes but aren't linked.
 
-**Action:** List the missing links. Don't add them automatically — Trilium link syntax needs human verification.
+**Action:** List the missing links. Don't add them automatically — link syntax varies by KB tool and needs human verification.
 
 ### 7. Open Items Audit
 Search for notes containing phrases like "open items", "TODO", "WIP", "next session", "to be fixed."
@@ -90,33 +89,33 @@ Search for notes containing phrases like "open items", "TODO", "WIP", "next sess
 
 Produce a maintenance report. Two options:
 
-**Option A — Trilium note** (for substantial findings):
-```html
-<h2>Maintenance Report [date] — Findings</h2>
+**Option A — KB note** (for substantial findings):
+```markdown
+## Maintenance Report [date] — Findings
 
-<h3>1. Untagged: [count]</h3>
-<ul><li>[note title] → proposed: noteType:[value]</li></ul>
+### 1. Untagged: [count]
+- [note title] → proposed type: [value]
 
-<h3>2. Unstructured: [count]</h3>
-<ul><li>[note title] → needs above/below restructuring</li></ul>
+### 2. Unstructured: [count]
+- [note title] → needs above/below restructuring
 
-<h3>3. Stale Live Entries: [count]</h3>
-<ul><li>[note title] → compiled truth outdated, [brief reason]</li></ul>
+### 3. Stale Live Entries: [count]
+- [note title] → compiled truth outdated, [brief reason]
 
-<h3>4. Orphans: [count]</h3>
-<ul><li>[note title] → propose: index / merge / delete</li></ul>
+### 4. Orphans: [count]
+- [note title] → propose: index / merge / delete
 
-<h3>5. Tag Issues: [count]</h3>
-<ul><li>[tag] → normalize to [canonical]</li></ul>
+### 5. Tag Issues: [count]
+- [tag] → normalize to [canonical]
 
-<h3>6. Missing Links: [count]</h3>
-<ul><li>[note] mentions [entity] but doesn't link to [target note]</li></ul>
+### 6. Missing Links: [count]
+- [note] mentions [entity] but doesn't link to [target note]
 
-<h3>7. Stale Open Items: [count]</h3>
-<ul><li>[note title]: "[item text]" — [age] days old</li></ul>
+### 7. Stale Open Items: [count]
+- [note title]: "[item text]" — [age] days old
 ```
 
-Tag with: `noteType:memo`, `status:structured`, `maintain-report`.
+Label with: `memo`, `status:structured`, `maintain-report`.
 
 **Option B — Inline summary** (for clean or minor findings):
 Report directly in the conversation. No note needed if there are fewer than 3 findings.
@@ -127,7 +126,7 @@ Report directly in the conversation. No note needed if there are fewer than 3 fi
 - **Batch proposals.** Don't ask about each note individually — present all findings, let human approve/reject in bulk.
 - **Don't chase perfection.** If a note is 80% right, flag it but don't block on it. The goal is incremental improvement, not a clean room.
 - **Known imperfections are fine.** If the human says "leave it," mark it as reviewed and move on. Don't re-flag it next run.
-- **Fix the typo.** The existing `kowledgebase` label (note `c105LrC3Kn9i`) is a known tag typo — normalize to `knowledgebase` on first run.
+- **Fix known typos.** If a misspelled tag was discovered in a previous run (e.g. `kowledgebase`), normalize it on first run.
 
 ## Anti-Patterns
 

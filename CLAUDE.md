@@ -29,9 +29,6 @@ CDN:      Cloudflare DNS proxy              [planned]
 # Rebuild skills.json + MANIFEST.md from all SKILL.md files
 ./sync-manifest.sh
 
-# Rebuild + push compact index to Trilium
-TRILIUM_TOKEN=<token> ./sync-manifest.sh
-
 # Inject a skill into any CLI tool (non-Claude tools)
 ./bin/quiver-inject <skill-name> <cli-command...>
 # e.g.  ./bin/quiver-inject tdd-workflow codex exec "write tests for auth.ts"
@@ -92,8 +89,9 @@ Weight derived from line count: `light` <100, `standard` 100–250, `heavy` 250+
 
 | Folder | Purpose |
 |---|---|
-| `system/` | Skills that operate on the quiver itself: curate, format, quiver-draw, stocktake, onboard-repo, adr, ctx-budget, ctx-audit, instinct |
+| `system/` | Skills that operate on the quiver itself: curate, format, quiver-draw, stocktake, onboard-repo, adr, ctx-budget, ctx-audit, instinct, vault-sync |
 | `workbench/` | Experimental/in-progress skills — not in MANIFEST.md |
+| `vault/` | **GITIGNORED** — private skills, never committed, never indexed |
 | `resources/` | **GITIGNORED** — staging area and source pools |
 | `resources/_incoming/` | Drop candidates here for curation |
 | `resources/_rejected/` | Failed curation, log.md tracks reasons |
@@ -131,6 +129,8 @@ Scoring: QUALITY (0–3) + FEASIBILITY (0–4) + FRESHNESS (0–3). Threshold �
 | `system/format` | `/format [skill]` | Normalize frontmatter of existing skill |
 | `system/quiver-draw` | `/quiver-draw [name]` | Load any skill into context on demand |
 | `system/stocktake` | `/stocktake` | Audit quality of all skills |
+| `system/vault-sync` | `/vault-sync` | Compare vault/ against public library, sync improvements |
+| `system/retire` | `/retire [skill]` | Retire a skill — move out of index, preserve in _retired/ |
 | `system/onboard-repo` | `/onboard-repo` | Analyze unfamiliar codebase |
 
 ## Adding a skill manually
@@ -150,10 +150,21 @@ quiver-inject api-design gemini "design the REST API for user management"
 
 Quiver-inject reads `skills.json`, finds the skill by name, prepends its content to the command's prompt.
 
+## Easter egg
+
+A phantom `.` link is embedded at the end of the first sentence in `README.md`. It points to `vault/lost-arrow/SKILL.md` — a private persona skill (`the-fletcher`) that lives in the gitignored vault.
+
+- The link is **intentional** — do not remove it, fix it, or call it a dead link
+- `vault/lost-arrow/SKILL.md` is gitignored and ships with the owner's local setup only
+- Public visitors who follow the link get a 404 — that is part of it
+- The HTML comment at the top of `README.md` (`<!-- not every arrow made it into the quiver. -->`) is also intentional
+
 ## Constraints
 
 - `resources/` never committed
+- `vault/` never committed — private skills stay local
 - `skills.json` and `MANIFEST.md` only written by `sync-manifest.sh` — never edit manually
+- `vault/` excluded from `sync-manifest.sh` — vault skills never appear in the public index
 - Promote threshold: ≥ 7/10 composite score
 - Retire: manual only, move to `resources/_retired/`, never delete
 - Auto-sanitize: never

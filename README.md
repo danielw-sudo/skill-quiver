@@ -1,6 +1,8 @@
+<!-- not every arrow made it into the quiver. -->
+
 # skill-quiver
 
-Curated library of 68 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills.
+Curated library of 167 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills[.](vault/lost-arrow/SKILL.md)
 
 **Primary target:** Claude Code. Compatible with Codex, Gemini CLI, and any tool that accepts skill injection.
 
@@ -51,23 +53,23 @@ cat $QUIVER_PATH/MANIFEST.md   # human-readable, grouped by category
 
 ## Categories
 
-| Folder | Skills | Purpose |
-|---|---|---|
-| `plan/` | 2 | Strategy, blueprints, multi-session planning |
-| `code/` | 7 | Coding patterns and language standards (reference) |
-| `code/tools/` | 4 | Hands-on execution tools — frontend, migrations, optimization |
-| `test/` | 6 | TDD, verification, regression, E2E, accessibility, API testing |
-| `ship/` | 3 | Deployment, Docker, DevOps automation |
-| `design/core/` | 3 | Design principles, context setup, diagram generation |
-| `design/verbs/` | 8 | Design actions — animate, colorize, distill, bolder, etc. |
-| `design/quality/` | 8 | Design review — audit, critique, polish, typeset, etc. |
-| `prompt/` | 4 | Content creation, research, prompt optimization |
-| `ops/` | 5 | LLM cost management, agent ops, context management |
-| `review/` | 4 | Code review, security review, skill safety scanning |
-| `system/` | 9 | Skills that manage the quiver itself — curate, format, draw, audit |
-| `domain/` | 5 | Document generation (DOCX/PDF/XLSX/PPTX), GLSL shaders |
+| Folder | Purpose |
+|---|---|
+| `plan/` | Strategy, blueprints, multi-session planning |
+| `code/` | Coding patterns and language standards (reference) |
+| `code/tools/` | Hands-on execution tools — frontend, migrations, optimization |
+| `test/` | TDD, verification, regression, E2E, accessibility, API testing |
+| `ship/` | Deployment, Docker, DevOps automation |
+| `design/core/` | Design principles, context setup, diagram generation |
+| `design/verbs/` | Design actions — animate, colorize, distill, bolder, etc. |
+| `design/quality/` | Design review — audit, critique, polish, typeset, etc. |
+| `prompt/` | Content creation, research, prompt optimization |
+| `ops/` | LLM cost management, agent ops, context management |
+| `review/` | Code review, security review, skill safety scanning |
+| `system/` | Skills that manage the quiver itself — curate, format, draw, audit, vault-sync |
+| `domain/` | Document generation (DOCX/PDF/XLSX/PPTX), GLSL shaders |
 
-Full catalog: see [MANIFEST.md](MANIFEST.md)
+Current counts: see [MANIFEST.md](MANIFEST.md)
 
 ---
 
@@ -78,7 +80,7 @@ The key design: keep each tool's default skill set minimal. Pull skills from the
 ```
 Your Tool
 ├── core skills (5-10 essentials, always loaded)
-└── quiver-draw (one skill, indexes all 68)
+└── quiver-draw (one skill, indexes all 167)
      └── pulls any skill on demand → context injection
 ```
 
@@ -105,6 +107,31 @@ Claude Code reads `@path` in CLAUDE.md at session start and inlines the file int
 }
 ```
 Hook fires on every prompt — heavier, but works across all projects without touching their CLAUDE.md.
+
+---
+
+## Private Vault
+
+Clone or fork this repo and keep your own private skills in `vault/` — a gitignored directory that never leaves your machine.
+
+```bash
+# Create your vault
+mkdir -p $QUIVER_PATH/vault/my-workflow
+
+# Add a skill
+cp my-skill.md $QUIVER_PATH/vault/my-workflow/SKILL.md
+```
+
+Vault skills work with all the same tools: `quiver-draw` loads them on demand, `quiver-inject` injects them into any CLI. They never appear in `skills.json` or `MANIFEST.md`.
+
+Use `/vault-sync` to compare your vault against the public library — it surfaces overlaps, gaps, and improvement opportunities without sharing your vault content with anyone.
+
+```
+vault/
+  client-intake/SKILL.md      ← your proprietary process
+  deal-flow/SKILL.md          ← your methodology
+  NOTES.md                    ← vault-sync audit trail
+```
 
 ---
 
@@ -145,9 +172,6 @@ Source pools (gitignored `resources/`) include symlinks to hermes-skills, agy-sk
 ```bash
 # Regenerates skills.json + MANIFEST.md from SKILL.md frontmatter
 ./sync-manifest.sh
-
-# Also push to Trilium (optional)
-TRILIUM_TOKEN=xxx ./sync-manifest.sh
 ```
 
 ---

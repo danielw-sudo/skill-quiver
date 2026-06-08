@@ -132,11 +132,10 @@ fi
 # ─────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Source shared project detection helper
 # This sets: PROJECT_ID, PROJECT_NAME, PROJECT_ROOT, PROJECT_DIR
-source "${SKILL_ROOT}/scripts/detect-project.sh"
+source "${SCRIPT_DIR}/detect-project.sh"
 PYTHON_CMD="${CLV2_PYTHON_CMD:-$PYTHON_CMD}"
 
 # ─────────────────────────────────────────────
@@ -310,7 +309,7 @@ if [ -f "${CONFIG_DIR}/disabled" ]; then
   OBSERVER_ENABLED=false
 else
   OBSERVER_ENABLED=false
-  CONFIG_FILE="${SKILL_ROOT}/config.json"
+  CONFIG_FILE="${SCRIPT_DIR}/config.json"
   # Allow CLV2_CONFIG override
   if [ -n "${CLV2_CONFIG:-}" ]; then
     CONFIG_FILE="$CLV2_CONFIG"
@@ -346,7 +345,7 @@ if [ "$OBSERVER_ENABLED" = "true" ]; then
         _CHECK_OBSERVER_RUNNING "${PROJECT_DIR}/.observer.pid" || true
         _CHECK_OBSERVER_RUNNING "${CONFIG_DIR}/.observer.pid" || true
         if [ ! -f "${PROJECT_DIR}/.observer.pid" ] && [ ! -f "${CONFIG_DIR}/.observer.pid" ]; then
-          nohup "${SKILL_ROOT}/agents/start-observer.sh" start >/dev/null 2>&1 &
+          [ -f "${SCRIPT_DIR}/agents/start-observer.sh" ] && nohup "${SCRIPT_DIR}/agents/start-observer.sh" start >/dev/null 2>&1 &
         fi
       ) 9>"$LAZY_START_LOCK"
     else
@@ -359,7 +358,7 @@ if [ "$OBSERVER_ENABLED" = "true" ]; then
           _CHECK_OBSERVER_RUNNING "${PROJECT_DIR}/.observer.pid" || true
           _CHECK_OBSERVER_RUNNING "${CONFIG_DIR}/.observer.pid" || true
           if [ ! -f "${PROJECT_DIR}/.observer.pid" ] && [ ! -f "${CONFIG_DIR}/.observer.pid" ]; then
-            nohup "${SKILL_ROOT}/agents/start-observer.sh" start >/dev/null 2>&1 &
+            [ -f "${SCRIPT_DIR}/agents/start-observer.sh" ] && nohup "${SCRIPT_DIR}/agents/start-observer.sh" start >/dev/null 2>&1 &
           fi
           rm -f "$LAZY_START_LOCK" 2>/dev/null || true
         )

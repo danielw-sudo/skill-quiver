@@ -14,12 +14,12 @@
  */
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
-const {
-  getTempDir,
-  writeFile,
-  log
-} = require('../lib/utils');
+
+function getTempDir() { return os.tmpdir(); }
+function writeFile(p, content) { fs.writeFileSync(p, content, 'utf8'); }
+function log(msg) { process.stderr.write(msg + '\n'); }
 
 async function main() {
   // Track tool call count (increment in a temp file)
