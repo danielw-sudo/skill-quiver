@@ -2249,6 +2249,20 @@
     "install": "cp $QUIVER_PATH/review/skill-scan/SKILL.md .claude/skills/skill-scan/SKILL.md"
   },
   {
+    "id": "ship/cloud-security",
+    "name": "cloud-security",
+    "type": "reference",
+    "category": "ship",
+    "description": "Cloud infrastructure and CI/CD pipeline security practices, including IAM configurations, secrets management, VPC security, logging, WAF, and disaster recovery.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "any",
+    "path": "ship/cloud-security/",
+    "install": "cp $QUIVER_PATH/ship/cloud-security/SKILL.md .claude/skills/cloud-security/SKILL.md"
+  },
+  {
     "id": "ship/deploy",
     "name": "deploy",
     "type": "reference",
@@ -2289,6 +2303,20 @@
     "model_tested": null,
     "path": "ship/docker/",
     "install": "cp $QUIVER_PATH/ship/docker/SKILL.md .claude/skills/docker/SKILL.md"
+  },
+  {
+    "id": "ship/infrastructure-maintainer",
+    "name": "infrastructure-maintainer",
+    "type": "persona",
+    "category": "ship",
+    "description": "Expert infrastructure specialist focused on system reliability, performance optimization, and technical operations management. Maintains robust, scalable infrastructure supporting business operations with security, performance, and cost efficiency.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "any",
+    "path": "ship/infrastructure-maintainer/",
+    "install": "cp $QUIVER_PATH/ship/infrastructure-maintainer/SKILL.md .claude/skills/infrastructure-maintainer/SKILL.md"
   },
   {
     "id": "system/adr",
@@ -2534,6 +2562,48 @@
     "model_tested": null,
     "path": "test/e2e-testing/",
     "install": "cp $QUIVER_PATH/test/e2e-testing/SKILL.md .claude/skills/e2e-testing/SKILL.md"
+  },
+  {
+    "id": "test/golang-testing",
+    "name": "golang-testing",
+    "type": "reference",
+    "category": "test",
+    "description": "Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodology with idiomatic Go practices.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "any",
+    "path": "test/golang-testing/",
+    "install": "cp $QUIVER_PATH/test/golang-testing/SKILL.md .claude/skills/golang-testing/SKILL.md"
+  },
+  {
+    "id": "test/python-testing",
+    "name": "python-testing",
+    "type": "reference",
+    "category": "test",
+    "description": "Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "any",
+    "path": "test/python-testing/",
+    "install": "cp $QUIVER_PATH/test/python-testing/SKILL.md .claude/skills/python-testing/SKILL.md"
+  },
+  {
+    "id": "test/rust-testing",
+    "name": "rust-testing",
+    "type": "reference",
+    "category": "test",
+    "description": "Rust testing patterns including unit tests, integration tests, async testing, property-based testing, mocking, and coverage. Follows TDD methodology.",
+    "weight": "heavy",
+    "pairs_with": [],
+    "proven_on": [],
+    "reviewed_at": "2026-06-08",
+    "model_tested": "any",
+    "path": "test/rust-testing/",
+    "install": "cp $QUIVER_PATH/test/rust-testing/SKILL.md .claude/skills/rust-testing/SKILL.md"
   },
   {
     "id": "test/tdd-workflow",

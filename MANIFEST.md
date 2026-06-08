@@ -229,8 +229,10 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Name | Type | Weight | Path | Description |
 |------|------|--------|------|-------------|
 | DevOps Automator | persona | heavy | ship/devops/ | Expert DevOps engineer specializing in infrastructure automation, CI/CD pipeline… |
+| cloud-security | reference | heavy | ship/cloud-security/ | Cloud infrastructure and CI/CD pipeline security practices, including IAM config… |
 | deploy | reference | heavy | ship/deploy/ | Deployment workflows, CI/CD pipeline patterns, Docker containerization, health c… |
 | docker | reference | heavy | ship/docker/ | Docker and Docker Compose patterns for local development, container security, ne… |
+| infrastructure-maintainer | persona | heavy | ship/infrastructure-maintainer/ | Expert infrastructure specialist focused on system reliability, performance opti… |
 
 ## system/
 
@@ -258,5 +260,8 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | Accessibility Auditor | persona | heavy | test/a11y-audit/ | Expert accessibility specialist who audits interfaces against WCAG standards, te… |
 | ai-regression | reference | heavy | test/ai-regression/ | Regression testing strategies for AI-assisted development. Sandbox-mode API test… |
 | e2e-testing | execution | heavy | test/e2e-testing/ | Playwright E2E testing patterns, Page Object Model, configuration, CI/CD integra… |
+| golang-testing | reference | heavy | test/golang-testing/ | Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing,… |
+| python-testing | reference | heavy | test/python-testing/ | Python testing strategies using pytest, TDD methodology, fixtures, mocking, para… |
+| rust-testing | reference | heavy | test/rust-testing/ | Rust testing patterns including unit tests, integration tests, async testing, pr… |
 | tdd-workflow | execution | heavy | test/tdd-workflow/ | Use this skill when writing new features, fixing bugs, or refactoring code. Enfo… |
 | verify | execution | standard | test/verify/ | A comprehensive verification system for Claude Code sessions. |
