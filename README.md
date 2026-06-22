@@ -10,73 +10,61 @@ Curated library of 184 production-grade skills for AI coding agents. Covers engi
 
 ## Quick Install
 
-You can install skill-quiver using either the lightweight **Zero-Clone method (Recommended)** or by **Cloning the repository locally**.
+### Option A: CLI (Recommended)
 
-### Option A: Zero-Clone Install (Recommended)
+No cloning needed. Install the CLI, search and use any skill instantly:
 
-If you only want to browse, search, and load/install skills directly from the remote GitHub registry without cloning the entire repository:
+```bash
+npm install -g skill-quiver
+```
 
-1. Download the single `/quiver` manager skill into your project's local skills directory (or globally):
-   ```bash
-   # For a local project:
-   curl -o .claude/skills/quiver/SKILL.md --create-dirs https://raw.githubusercontent.com/danielw-sudo/skill-quiver/main/system/quiver/SKILL.md
+```bash
+quiver list                        # Browse all 184 skills by category
+quiver search tdd                  # Fuzzy search by name, category, or description
+quiver draw tdd-workflow           # Output skill to stdout — pipe to any AI tool
+quiver install fe-design           # Copy skill to .claude/skills/
+quiver info backend-architect      # Show skill details
+quiver inject tdd codex exec "write tests for auth.ts"  # Inject into any CLI
+```
 
-   # Or globally for all projects:
-   curl -o ~/.claude/skills/quiver/SKILL.md --create-dirs https://raw.githubusercontent.com/danielw-sudo/skill-quiver/main/system/quiver/SKILL.md
-   ```
-
-2. Start your Claude Code session and run:
-   * `/quiver find <query>` — Search the entire public skill catalog.
-   * `/quiver draw <name>` — Load any skill's content directly into your active context on-the-fly.
-   * `/quiver install <name>` — Download and save a skill locally to `.claude/skills/` in your current project.
+The CLI auto-syncs the skill index on first run and caches skill content locally (`~/.quiver/`). Works offline after first use.
 
 ---
 
-### Option B: Local Repository Clone
+### Option B: Claude Code Skill Loader
 
-If you want local offline access, custom private skills via the `vault`, or command-line injection for other CLI tools:
+If you prefer staying inside Claude Code, install the `/quiver` manager skill:
 
-#### 1. Clone this repository
-Clone the repository to your local machine (e.g., under `~/projects/`):
+```bash
+curl -o .claude/skills/quiver/SKILL.md --create-dirs \
+  https://raw.githubusercontent.com/danielw-sudo/skill-quiver/main/system/quiver/SKILL.md
+```
+
+Then in any session:
+- `/quiver find <query>` — Search the catalog
+- `/quiver draw <name>` — Load a skill into context
+- `/quiver install <name>` — Save a skill locally
+
+---
+
+### Option C: Local Repository Clone
+
+For offline access, private vault skills, or contributing:
+
 ```bash
 git clone https://github.com/danielw-sudo/skill-quiver.git ~/projects/skill-quiver
+export QUIVER_PATH=~/projects/skill-quiver  # add to ~/.bashrc or ~/.zshrc
 ```
 
-#### 2. Configure the environment variable
-Add `QUIVER_PATH` to your shell profile (`~/.bashrc` or `~/.zshrc`) so that agent loader scripts and CLI tools can locate your local library copy:
 ```bash
-export QUIVER_PATH=~/projects/skill-quiver
-```
-Then reload your shell configuration (e.g., `source ~/.bashrc`).
-
-#### 3. Load or inject skills
-
-##### For Claude Code
-To install a specific skill into your active project workspace:
-```bash
-mkdir -p .claude/skills/tdd-workflow
+# Install a skill manually
 cp $QUIVER_PATH/test/tdd-workflow/SKILL.md .claude/skills/tdd-workflow/SKILL.md
-```
-Or install the local `quiver-draw` loader globally so you can pull any skill on-demand:
-```bash
-mkdir -p ~/.claude/skills/quiver-draw
-cp $QUIVER_PATH/system/quiver-draw/SKILL.md ~/.claude/skills/quiver-draw/SKILL.md
-# Then in any active Claude Code session, run:
-# /quiver-draw tdd-workflow
-```
 
-##### For Codex / Gemini CLI / other tools
-Use the built-in CLI wrapper `quiver-inject` to prepend any skill as a context prefix before running your CLI agent commands:
-```bash
+# Inject into Codex / Gemini / any CLI
 $QUIVER_PATH/bin/quiver-inject tdd-workflow codex exec "write tests for auth.ts"
-$QUIVER_PATH/bin/quiver-inject api-design gemini "design REST API for users"
-```
 
-##### Browse the index
-To search and view cataloged skills:
-```bash
-cat $QUIVER_PATH/skills.json   # Machine-readable schema index
-cat $QUIVER_PATH/MANIFEST.md   # Human-readable categorized list
+# Browse the index
+cat $QUIVER_PATH/MANIFEST.md
 ```
 
 ---
@@ -110,11 +98,11 @@ The key design: keep each tool's default skill set minimal. Pull skills from the
 ```
 Your Tool
 ├── core skills (5-10 essentials, always loaded)
-└── quiver-draw (one skill, indexes all 167)
+└── quiver-draw (one skill, indexes all 184)
      └── pulls any skill on demand → context injection
 ```
 
-For non-Claude tools, `bin/quiver-inject` does the same thing from the command line.
+For non-Claude tools, the `quiver` CLI or `bin/quiver-inject` does the same thing from the command line.
 
 ### Always-loading skills (project-scoped)
 

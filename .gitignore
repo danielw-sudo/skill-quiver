@@ -6,6 +6,7 @@ _archived/
 AUDIT.md
 DEVLOG.md
 DEVLOG_ARCHIVE.md
+doc/
 
 # Staging area + source pools — never commit
 resources/
