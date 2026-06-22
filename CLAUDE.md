@@ -26,19 +26,29 @@ CDN:      Cloudflare DNS proxy              [planned]
 ## Key commands
 
 ```bash
-# Rebuild skills.json + MANIFEST.md from all SKILL.md files
+# Rebuild skills.json + MANIFEST.md from all SKILL.md files (run after any SKILL.md change)
 ./sync-manifest.sh
+
+# Rebuild + push compact index to Trilium
+TRILIUM_TOKEN=<token> ./sync-manifest.sh
+
+# Security scan a candidate before promotion (score >50 = reject, 26-50 = ask user)
+./bin/skillspector-scan <path-to-SKILL.md>
 
 # Inject a skill into any CLI tool (non-Claude tools)
 ./bin/quiver-inject <skill-name> <cli-command...>
 # e.g.  ./bin/quiver-inject tdd-workflow codex exec "write tests for auth.ts"
 ```
 
-## Environment
+> `bin/skillspector-scan` requires SkillSpector installed at `resources/skillspector/.venv`. If missing, it prints setup instructions.
 
-Set once in `~/.bashrc` or `~/.zshrc` — all tools read from here:
+## Orientation — read index before filesystem
+
+`skills.json` is authoritative. Read it first when looking up a skill — don't scan directories.
+
 ```bash
-export QUIVER_PATH=~/projects/skill-quiver
+cat $QUIVER_PATH/skills.json      # full skill index — id, type, category, description, install
+cat $QUIVER_PATH/baseline.json    # current model names and active MCPs/tools
 ```
 
 ## Skill structure
@@ -47,43 +57,46 @@ Every skill lives at `<category>/<name>/SKILL.md`. Required frontmatter:
 
 ```yaml
 ---
-name: kebab-case-name
+name: kebab-case-name           # must match directory name
 type: execution | reference | persona | setup
 category: plan | code | code/tools | test | ship | design/core | design/verbs | design/quality | prompt | ops | review | system | domain
 source: original | everything-claude-code | impeccable | ...
 model: any | sonnet | opus
 description: >-
   One paragraph. If type=execution, must include TRIGGER when: ...
+pairs_with: []         # optional — related skill ids
+proven_on: []          # optional — projects where validated
+reviewed_at: 2026-06-04
+model_tested: claude-sonnet-4-6
 ---
 ```
 
-Optional: `pairs_with`, `proven_on`, `reviewed_at`, `model_tested`.
+Weight (auto-derived): `light` <100 lines | `standard` 100–250 | `heavy` 250+.
 
 Skills with large reference material put supporting docs in `<skill>/reference/`. The quiver-draw loader reads those automatically.
 
-## Generated files
+## Curation workflow (HITL, 4-step pipeline)
 
-`skills.json` — machine-readable index. Schema per entry:
-```json
-{
-  "id": "test/tdd-workflow",
-  "name": "tdd-workflow",
-  "type": "execution",
-  "category": "test",
-  "description": "...",
-  "weight": "light | standard | heavy",
-  "pairs_with": [],
-  "proven_on": [],
-  "reviewed_at": null,
-  "model_tested": null,
-  "path": "test/tdd-workflow/",
-  "install": "cp $QUIVER_PATH/test/tdd-workflow/SKILL.md .claude/skills/tdd-workflow/SKILL.md"
-}
+```
+1. bin/skillspector-scan <candidate>      ← security gate (score >50 = reject immediately)
+2. /curate <candidate>                    ← score QUALITY+FEASIBILITY+FRESHNESS (≥7/10 = promote)
+3. /format <promoted-skill>               ← normalize frontmatter
+4. ./sync-manifest.sh                     ← rebuild index
 ```
 
-Weight derived from line count: `light` <100, `standard` 100–250, `heavy` 250+.
+Drop candidates into `resources/_incoming/`. Never skip the security scan for external sources.
 
-`baseline.json` — human-maintained. Current model names and active MCPs. Used by curation scoring for freshness checks.
+Known trusted sources (skip interactive confirm, use `--no-llm`): `greensock/gsap-skills`, `pbakaus/impeccable`, `affaan-m/everything-claude-code`, `MiniMax-AI/skills`, `NVIDIA/SkillSpector`.
+
+Scoring: QUALITY (0–3) + FEASIBILITY (0–4) + FRESHNESS (0–3). Threshold ≥ 7 promotes. Rejections → `resources/_rejected/log.md`.
+
+## Source repo strategy: Clone → Curate → Remove
+
+1. `git clone --depth=1 <repo> resources/<name>`
+2. Process ALL skills — promote (≥7) or log rejection
+3. `rm -rf resources/<name>` after full processing — no repo lingers
+
+**Current pause (2026-06-04):** No new repos until backlog clears (~437 candidates across active sources).
 
 ## Folder taxonomy
 
@@ -109,17 +122,16 @@ Weight derived from line count: `light` <100, `standard` 100–250, `heavy` 250+
 | `resources/notebooklm-skill/` | Cloned source repo |
 | `resources/fireworks-tech-graph/` | Cloned source repo |
 
-## Curation workflow (HITL)
+## File ownership
 
-```
-1. Drop candidate into resources/_incoming/   (or point /curate at a source pool path)
-2. Run /curate [file]                         (loads system/curate/SKILL.md)
-3. Review score report + normalized frontmatter
-4. Approve → promoted to correct category folder, sync-manifest.sh runs automatically
-5. Reject → logged to resources/_rejected/log.md
-```
-
-Scoring: QUALITY (0–3) + FEASIBILITY (0–4) + FRESHNESS (0–3). Threshold ≥ 7 promotes.
+| Path | Who writes |
+|------|-----------|
+| `skills.json` | `sync-manifest.sh` only — never edit manually |
+| `MANIFEST.md` | `sync-manifest.sh` only — never edit manually |
+| `baseline.json` | Human owner only — update when models deprecate |
+| `bin/` | Agent (test before committing) |
+| `workbench/` | Agent freely |
+| `resources/` | Never committed |
 
 ## System skills
 
@@ -165,7 +177,14 @@ A phantom `.` link is embedded at the end of the first sentence in `README.md`. 
 - `vault/` never committed — private skills stay local
 - `skills.json` and `MANIFEST.md` only written by `sync-manifest.sh` — never edit manually
 - `vault/` excluded from `sync-manifest.sh` — vault skills never appear in the public index
+- Auto-promote without security scan: never
+- Auto-sanitize skill content: never
 - Promote threshold: ≥ 7/10 composite score
 - Retire: manual only, move to `resources/_retired/`, never delete
-- Auto-sanitize: never
 - SKILL.md files: ≤ 200 lines preferred (>250 flagged as heavy)
+
+## Session end
+
+1. Run `./sync-manifest.sh` if any SKILL.md was added or changed
+2. Verify `skills.json` reflects the changes
+3. Commit with `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`

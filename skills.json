@@ -2007,6 +2007,25 @@
     "install": "cp $QUIVER_PATH/prompt/prompt-engineer/SKILL.md .claude/skills/prompt-engineer/SKILL.md"
   },
   {
+    "id": "prompt/prompt-master",
+    "name": "prompt-master",
+    "type": "execution",
+    "category": "prompt",
+    "description": "Generates optimized prompts for any AI tool (LLMs, image/video AI, coding agents). Per-model routing rules for Claude, GPT, Gemini, DeepSeek, reasoning models, image gen, and video gen. 9-dimension intent extraction + hard rules. TRIGGER when: user asks to write, fix, improve, or adapt a prompt for a specific tool. DO NOT TRIGGER when: user wants the task executed directly.",
+    "weight": "standard",
+    "pairs_with": [
+      "prompt/prompt-engineer",
+      "prompt/prompt-tune"
+    ],
+    "proven_on": [
+      "tools4all.ai"
+    ],
+    "reviewed_at": null,
+    "model_tested": null,
+    "path": "prompt/prompt-master/",
+    "install": "cp $QUIVER_PATH/prompt/prompt-master/SKILL.md .claude/skills/prompt-master/SKILL.md"
+  },
+  {
     "id": "prompt/prompt-tune",
     "name": "prompt-tune",
     "type": "execution",

@@ -201,6 +201,7 @@ Machine-readable index of all skills. Use for routing, search, and install decis
 | paper-reader | execution | standard | prompt/paper-reader/ | Extract, analyze, and translate the core findings, methods, and practical implic… |
 | polymarket | reference | light | prompt/polymarket/ | Query Polymarket: markets, prices, orderbooks, history. |
 | prompt-engineer | reference | light | prompt/prompt-engineer/ | LLM prompt design and optimization specialist — system prompts, chain-of-thought… |
+| prompt-master | execution | standard | prompt/prompt-master/ | Generates optimized prompts for any AI tool (LLMs, image/video AI, coding agents… |
 | prompt-tune | execution | heavy | prompt/prompt-tune/ | Analyze raw prompts, identify intent and gaps, match ECC components (skills/comm… |
 | reddit-community-builder | reference | light | prompt/reddit-community-builder/ | Reddit community growth specialist — authentic engagement, value-driven content,… |
 | research | execution | standard | prompt/research/ | Multi-source deep research using firecrawl and exa MCPs. Searches the web, synth… |
