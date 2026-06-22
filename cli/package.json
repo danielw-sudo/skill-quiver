@@ -1,9 +1,9 @@
 {
   "name": "skill-quiver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for browsing, searching, and installing AI development skills",
   "bin": {
-    "quiver": "./bin/quiver.js"
+    "quiver": "bin/quiver.js"
   },
   "files": [
     "bin/",
@@ -12,11 +12,18 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["ai", "skills", "claude", "codex", "gemini", "cli"],
+  "keywords": [
+    "ai",
+    "skills",
+    "claude",
+    "codex",
+    "gemini",
+    "cli"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielw-sudo/skill-quiver.git",
+    "url": "git+https://github.com/danielw-sudo/skill-quiver.git",
     "directory": "cli"
   }
 }
