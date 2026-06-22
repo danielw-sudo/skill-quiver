@@ -19,6 +19,8 @@ function injectAndRun(cli, cliArgs, context) {
     const lastIdx = cliArgs.length - 1;
     if (lastIdx >= 0) {
       cliArgs[lastIdx] = `${context}\n\n---\n\n${cliArgs[lastIdx]}`;
+    } else {
+      cliArgs.push(context);
     }
     return run(cli, cliArgs);
   }
@@ -27,6 +29,8 @@ function injectAndRun(cli, cliArgs, context) {
     const lastIdx = cliArgs.length - 1;
     if (lastIdx >= 0) {
       cliArgs[lastIdx] = `${context}\n\n---\n\n${cliArgs[lastIdx]}`;
+    } else {
+      cliArgs.push(context);
     }
     return run(cli, cliArgs);
   }

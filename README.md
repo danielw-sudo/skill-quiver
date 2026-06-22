@@ -2,7 +2,7 @@
 
 # skill-quiver
 
-Curated library of 184 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills[.](vault/lost-arrow/SKILL.md)
+Curated library of 185 production-grade skills for AI coding agents. Covers engineering, design, testing, ops, security, domain tools, and agent meta-skills[.](vault/lost-arrow/SKILL.md)
 
 **Primary target:** Claude Code. Compatible with Codex, Gemini CLI, and any tool that accepts skill injection.
 
@@ -19,7 +19,7 @@ npm install -g skill-quiver
 ```
 
 ```bash
-quiver list                        # Browse all 184 skills by category
+quiver list                        # Browse all 185 skills by category
 quiver search tdd                  # Fuzzy search by name, category, or description
 quiver draw tdd-workflow           # Output skill to stdout — pipe to any AI tool
 quiver install fe-design           # Copy skill to .claude/skills/
@@ -98,7 +98,7 @@ The key design: keep each tool's default skill set minimal. Pull skills from the
 ```
 Your Tool
 ├── core skills (5-10 essentials, always loaded)
-└── quiver-draw (one skill, indexes all 184)
+└── quiver-draw (one skill, indexes all 185)
      └── pulls any skill on demand → context injection
 ```
 
